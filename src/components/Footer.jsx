@@ -11,8 +11,9 @@ function Footer() {
         </div>
         <div>
           <h4>İletişim</h4>
-          <p>E-posta: iletisim@qrakter.com</p>
-          <p>Telefon: +90 5XX XXX XX XX</p>
+          <p>Telefon: 0 (216) 906 20 66</p>
+          <p>Adresimiz: Soğanlık Yeni Mah. Aliağa Sok. No:8 K:24 D:159 Bumerang Towers Kartal/İstanbul</p>
+          <p>Resmi E-posta: bilgi@zayfix.com</p>
         </div>
       </div>
       <p className="copyright">© {new Date().getFullYear()} QRAKTER. Tüm hakları saklıdır.</p>

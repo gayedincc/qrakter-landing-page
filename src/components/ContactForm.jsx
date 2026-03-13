@@ -68,11 +68,26 @@ function ContactForm() {
             Bilgilerinizi bırakın, ekibimiz size en kısa sürede ulaşsın. Profil, evrak, tutanak ve
             rol bazlı QR akışlarının ürününüze veya kurumunuza nasıl uyarlanabileceğini birlikte değerlendirelim.
           </p>
+
+          <div className="contact-info-list" aria-label="İletişim bilgileri">
+            <div className="contact-info-item">
+              <span>Telefon</span>
+              <strong>0 (216) 906 20 66</strong>
+            </div>
+            <div className="contact-info-item">
+              <span>Adresimiz</span>
+              <strong>Soğanlık Yeni Mah. Aliağa Sok. No:8 K:24 D:159 Bumerang Towers Kartal/İstanbul</strong>
+            </div>
+            <div className="contact-info-item">
+              <span>Resmi E-posta</span>
+              <strong>bilgi@zayfix.com</strong>
+            </div>
+          </div>
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
           <div className="form-row">
-            <label htmlFor="firstName">Ad</label>
+            <label htmlFor="firstName">Ad *</label>
             <input
               id="firstName"
               name="firstName"
@@ -92,7 +107,7 @@ function ContactForm() {
           </div>
 
           <div className="form-row">
-            <label htmlFor="lastName">Soyad</label>
+            <label htmlFor="lastName">Soyad *</label>
             <input
               id="lastName"
               name="lastName"
