@@ -19,7 +19,7 @@ function Hero() {
               Özellikleri İncele
             </a>
             <button className="btn btn-store-notice" type="button" disabled aria-disabled="true">
-              Yakında Play Store'da
+              Yakında Play Store ve App Store'da
             </button>
           </div>
         </div>
