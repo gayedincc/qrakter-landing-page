@@ -18,6 +18,9 @@ function Hero() {
             <a className="btn btn-secondary" href="#ozellikler">
               Özellikleri İncele
             </a>
+            <button className="btn btn-store-notice" type="button" disabled aria-disabled="true">
+              Yakında Play Store'da
+            </button>
           </div>
         </div>
 
