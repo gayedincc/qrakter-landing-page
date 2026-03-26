@@ -16,6 +16,9 @@ function Footer() {
           <p>Resmi E-posta: bilgi@zayfix.com</p>
         </div>
       </div>
+      <p className="footer-legal">
+        <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
+      </p>
       <p className="copyright">© {new Date().getFullYear()} QRAKTER. Tüm hakları saklıdır.</p>
     </footer>
   )

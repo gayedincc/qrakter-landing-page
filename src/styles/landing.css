@@ -1054,6 +1054,23 @@ input:focus-visible {
   color: #d2efd8;
 }
 
+.footer-legal {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.footer-legal a {
+  color: #ecf9e8;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+}
+
 .copyright {
   text-align: center;
   margin-top: 1.1rem;

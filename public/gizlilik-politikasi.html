@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRAKTER - Gizlilik Politikası</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --font-default: 'Outfit', 'Segoe UI', sans-serif;
+        --black: #0f3d2b;
+        --dark: #237c51;
+        --dark-secondary: #2e9e68;
+        --light: #f4faef;
+        --light-secondary: #ecf6e2;
+        --border: #cce5bc;
+        --text: #1f6b4b;
+        --text-soft: #2e7d5b;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(102, 187, 106, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-default);
+        line-height: 1.7;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(161, 217, 92, 0.22), transparent 35%),
+          radial-gradient(circle at 90% 10%, rgba(46, 158, 104, 0.18), transparent 30%),
+          var(--light);
+      }
+
+      .container {
+        width: min(980px, calc(100% - 2.4rem));
+        margin: 0 auto;
+        padding: 40px 0 56px;
+      }
+
+      .header {
+        text-align: center;
+        background: linear-gradient(120deg, rgba(161, 217, 92, 0.26), rgba(46, 158, 104, 0.14));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 30px 22px;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: var(--black);
+        font-size: clamp(1.7rem, 2vw + 0.8rem, 2.45rem);
+        line-height: 1.2;
+      }
+
+      .header p {
+        margin: 12px 0 0;
+        color: var(--text-soft);
+        font-size: 0.96rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 700;
+        margin-bottom: 16px;
+        min-height: 46px;
+        padding: 0.8rem 1.15rem;
+        border-radius: 0.8rem;
+        border: 1px solid transparent;
+        background: linear-gradient(90deg, #a1d95c 0%, #66bb6a 50%, #2e9e68 100%);
+        box-shadow: 0 3px 10px rgba(46, 158, 104, 0.25);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      }
+
+      .back-link:hover {
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 10px 30px rgba(102, 187, 106, 0.25);
+        filter: saturate(1.05);
+      }
+
+      .back-link:focus-visible {
+        outline: 3px solid rgba(205, 239, 140, 0.8);
+        outline-offset: 2px;
+      }
+
+      .section {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .section h2 {
+        margin: 0 0 12px;
+        color: var(--black);
+        font-size: 1.28rem;
+        border-bottom: 2px solid var(--light-secondary);
+        padding-bottom: 9px;
+      }
+
+      .section p,
+      .section li {
+        margin: 0 0 10px;
+        color: var(--text-soft);
+        font-size: 0.98rem;
+      }
+
+      .section ul {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      a {
+        color: var(--dark);
+      }
+
+      a:hover {
+        color: var(--dark-secondary);
+      }
+
+      .footer {
+        text-align: center;
+        color: var(--text-soft);
+        font-size: 0.87rem;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(980px, calc(100% - 1.2rem));
+          padding: 18px 0 32px;
+        }
+
+        .header,
+        .section {
+          border-radius: 12px;
+          padding: 20px 16px;
+        }
+
+        .section h2 {
+          font-size: 1.12rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a class="back-link" href="/">&#8592; Ana sayfaya dön</a>
+
+      <div class="header">
+        <h1>Zayfix QRakter - Gizlilik Politikası</h1>
+        <p>Son Güncelleme: 26.03.2026</p>
+      </div>
+
+      <div class="section">
+        <h2>1. Giriş</h2>
+        <p>
+          Zayfix QRakter ("Uygulama"), Everion Consulting ("Şirket", "biz") tarafından geliştirilmiş ve
+          sunulmaktadır. Bu gizlilik politikası, uygulamayı kullanırken kişisel verilerinizin nasıl
+          toplandığını, kullanıldığını ve korunduğunu açıklar.
+        </p>
+        <p>
+          Uygulamamızı kullanarak bu gizlilik politikasını kabul etmiş olursunuz. Politikamızı kabul
+          etmiyorsanız lütfen uygulamayı kullanmayınız.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>2. Toplanan Veriler</h2>
+        <p>Zayfix QRakter aşağıdaki verileri toplar ve işler:</p>
+        <ul>
+          <li>
+            <strong>Hesap Bilgileri:</strong> Kayıt sırasında telefon numaranız ve/veya e-posta adresiniz.
+            Kimlik doğrulama OTP (tek kullanımlık şifre) ile yapılır.
+          </li>
+          <li>
+            <strong>Kimlik ve Sürücü Bilgileri:</strong> Ad, soyad, T.C. kimlik numarası, ehliyet numarası,
+            ehliyet sınıfı, adres bilgisi.
+          </li>
+          <li>
+            <strong>Araç ve Sigorta Bilgileri:</strong> Plaka, marka, model, şasi numarası, sigorta şirketi
+            adı, poliçe numarası, acente numarası, TRAMER numarası.
+          </li>
+          <li>
+            <strong>Kaza Verileri:</strong> Kaza tespit tutanağı bilgileri, kaza krokisi, taraf/katılımcı
+            bilgileri, tanık bilgileri, hasar noktaları ve beyan metinleri.
+          </li>
+          <li>
+            <strong>Konum Verileri:</strong> Kaza anında GPS koordinatları ve adres bilgisi (yalnızca
+            konum izni verilmesi halinde).
+          </li>
+          <li>
+            <strong>Medya ve Belge Verileri:</strong> Kaza fotoğrafları, hasar fotoğrafları, yüklenen
+            belgeler (ehliyet, ruhsat, sigorta poliçesi vb.), dijital imza görselleri.
+          </li>
+          <li>
+            <strong>Sağlık ve Acil Durum Bilgileri:</strong> Kan grubu, alerjiler, kronik hastalıklar,
+            acil durum notları ve acil iletişim kişileri (kullanıcı tarafından girilir; acil durum kartı
+            ve QR kodu için kullanılır).
+          </li>
+          <li>
+            <strong>Cihaz Bilgileri:</strong> Cihaz tanımlayıcı (device ID), platform bilgisi (iOS/Android),
+            bildirim token'ı. Bu bilgiler cihazınızı hesabınızla ilişkilendirmek ve push bildirim
+            göndermek için kullanılır.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>3. SMS Verilerinin Kullanımı</h2>
+        <p>Google Play Store politikaları gereği, SMS izinlerinin kullanımını şeffaf bir şekilde açıklıyoruz:</p>
+        <ul>
+          <li>SMS kanalı yalnızca OTP doğrulama ve acil durum (SOS) bildirim süreçlerinde kullanılır.</li>
+          <li>SMS verilerinizi reklam, pazarlama veya üçüncü taraflarla paylaşım amacıyla kullanmıyoruz.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>4. Verilerin Saklanması</h2>
+        <ul>
+          <li>
+            Kaza raporları, profil bilgileri ve ilgili kayıtlar hesabınızla ilişkili olarak sunucularımızda
+            saklanır.
+          </li>
+          <li>Uygulama, çevrimdışı kullanım için bazı verileri cihazınızdaki yerel veritabanında da tutabilir.</li>
+          <li>Hesap bilgileriniz hesabınız aktif olduğu sürece saklanır.</li>
+          <li>Hesabınızı sildiğinizde tüm verileriniz 30 gün içinde kalıcı olarak kaldırılır.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>5. Verilerin Aktarılması</h2>
+        <p>Kişisel verilerinizi üçüncü taraflarla ticari amaçla paylaşmıyoruz. Ancak aşağıdaki durumlar istisnadır:</p>
+        <ul>
+          <li><strong>Kaza Tutanağı Paylaşımı:</strong> Kaza tespit tutanağı bilgileri, tutanak kapsamında karşı tarafla paylaşılır.</li>
+          <li><strong>Sigorta Paylaşımı:</strong> Yalnızca kullanıcının açık onayı ile sigorta şirketlerine aktarılabilir.</li>
+          <li><strong>SOS Bildirimi:</strong> Kullanıcı tetiklemesi ile acil iletişim kişilerine SMS gönderimi yapılır.</li>
+          <li><strong>Teknik Hizmet Sağlayıcılar:</strong> Push bildirim, harita/konum ve dosya depolama altyapıları gibi teknik servislere sınırlı aktarım.</li>
+          <li><strong>Yasal Zorunluluklar:</strong> Yasal bir zorunluluk veya mahkeme kararı ile talep edilmesi halinde.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6. Veri Güvenliği</h2>
+        <p>Verilerinizi korumak için aşağıdaki önlemleri alıyoruz:</p>
+        <ul>
+          <li>Tüm veri iletimi SSL/TLS şifreleme ile korunur.</li>
+          <li>API erişimi JWT (JSON Web Token) kimlik doğrulama ile sağlanır.</li>
+          <li>Cihazda saklanan hassas oturum verileri SecureStore mekanizması ile korunur.</li>
+          <li>Sunucularımız güvenlik duvarı ve DDoS koruması altındadır.</li>
+          <li>Rate limiting ile kötüye kullanım engellenir.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>7. Haklarınız</h2>
+        <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+        <ul>
+          <li>Verilerinize erişim talep etme hakkı</li>
+          <li>Verilerinizin düzeltilmesini talep etme hakkı</li>
+          <li>Verilerinizin silinmesini talep etme hakkı</li>
+          <li>Veri işlemenin kısıtlanmasını talep etme hakkı</li>
+          <li>Verilerinizin taşınabilirliğini talep etme hakkı</li>
+        </ul>
+        <p>
+          Bu haklarınızı kullanmak için
+          <a href="mailto:ibrahimonceler@everionconsulting.com">ibrahimonceler@everionconsulting.com</a>
+          adresine başvurabilirsiniz.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>8. Çocukların Gizliliği</h2>
+        <p>
+          Zayfix QRakter, 18 yaşın altındaki kullanıcılara yönelik değildir. 18 yaşın altındaki kişilerden
+          bilerek kişisel veri toplamıyoruz. Eğer 18 yaşın altındaki bir kişinin verilerinin toplandığını
+          fark ederseniz, lütfen bizimle iletişime geçin.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>9. Politika Değişiklikleri</h2>
+        <p>
+          Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikler olduğunda sizi
+          uygulama içi bildirim veya e-posta yoluyla bilgilendireceğiz. Güncellenmiş politika,
+          yayınlandığı tarihte yürürlüğe girer.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>10. İletişim</h2>
+        <p>Gizlilik politikası hakkındaki soru ve talepleriniz için bizimle iletişime geçebilirsiniz:</p>
+        <ul>
+          <li><strong>Şirket:</strong> Everion Consulting</li>
+          <li>
+            <strong>E-posta:</strong>
+            <a href="mailto:ibrahimonceler@everionconsulting.com">ibrahimonceler@everionconsulting.com</a>
+          </li>
+          <li><strong>Web:</strong> <a href="https://everionconsulting.com" target="_blank" rel="noopener noreferrer">https://everionconsulting.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2026 Everion Consulting. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </body>
+</html>
