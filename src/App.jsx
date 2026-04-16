@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
+import FloatingStoreButtons from './components/FloatingStoreButtons'
 import GiveawayPage from './pages/GiveawayPage'
 import './styles/landing.css'
 
@@ -18,6 +20,7 @@ function LandingPage() {
   return (
     <>
       <Hero />
+      <HowItWorks />
       <Features />
       <ContactForm />
     </>
@@ -48,6 +51,7 @@ function App() {
         {isGiveawayPage ? <GiveawayPage /> : <LandingPage />}
       </main>
       <Footer />
+      {!isGiveawayPage ? <FloatingStoreButtons /> : null}
       {!isGiveawayPage ? <ScrollToTopButton /> : null}
     </div>
   )

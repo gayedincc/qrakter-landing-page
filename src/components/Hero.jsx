@@ -8,8 +8,8 @@ function Hero() {
           <p className="eyebrow">Akıllı Kaza Yardım Uygulaması</p>
           <h1>Kaza anında gerekli bilgi, yönlendirme ve kayıt akışı tek ekranda hazır olsun.</h1>
           <p className="hero-description">
-            QRAKTER; profil, sağlık, araç ve evrak verilerini düzenli tutar, kritik ekranları hızlı erişime
-            açar ve ihtiyaç anında süreci daha sakin yönetmene yardımcı olur.
+            QRAKTER; profil, sağlık, araç ve evrak verilerini düzenli tutar, kritik ekranları hızlı erişime açar ve
+            ihtiyaç anında süreci daha sakin yönetmene yardımcı olur.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="#iletisim">
@@ -18,15 +18,12 @@ function Hero() {
             <a className="btn btn-secondary" href="#ozellikler">
               Özellikleri İncele
             </a>
-            <button className="btn btn-store-notice" type="button" disabled aria-disabled="true">
-              Yakında Play Store ve App Store'da
-            </button>
           </div>
         </div>
 
         <div className="hero-visual">
           <div className="hero-visual-frame">
-            <img className="hero-visual-image" src={motorZayfixImage} alt="Zayfix motor sürücüsü görseli" />
+            <img className="hero-visual-image" src={motorZayfixImage} alt="Zayfix Qrakter motor sürücüsü görseli" />
           </div>
         </div>
       </div>
