@@ -1,11 +1,15 @@
-import { AndroidIcon, AppleIcon } from './StoreIcons'
+import { AndroidIcon, AppleIcon } from "./StoreIcons";
 
-const ANDROID_DOWNLOAD_URL = 'https://play.google.com/store/apps/details?id=com.everion.qrakter.app&pcampaignid=web_share'
-const IOS_PREREGISTER_URL = 'https://app.zayfix.com'
+const ANDROID_DOWNLOAD_URL =
+  "https://play.google.com/store/apps/details?id=com.everion.qrakter.app&pcampaignid=web_share";
+const IOS_PREREGISTER_URL = "https://app.zayfix.com";
 
 function FloatingStoreButtons() {
   return (
-    <div className="floating-store-buttons" aria-label="Uygulama erişim seçenekleri">
+    <div
+      className="floating-store-buttons"
+      aria-label="Uygulama erişim seçenekleri"
+    >
       <a
         className="btn floating-store-btn is-android"
         href={ANDROID_DOWNLOAD_URL}
@@ -23,10 +27,10 @@ function FloatingStoreButtons() {
         rel="noopener noreferrer"
       >
         <AppleIcon className="floating-store-icon" />
-        <span>iOS ön kayıt</span>
+        <span>iOS ön kayıt / Web'den erişim</span>
       </a>
     </div>
-  )
+  );
 }
 
-export default FloatingStoreButtons
+export default FloatingStoreButtons;

@@ -323,7 +323,7 @@ input:focus-visible {
   align-items: center;
 }
 
-.festival-platform-icon {
+.access-platform-icon {
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;
@@ -741,27 +741,13 @@ input:focus-visible {
   margin: 0;
 }
 
-.festival-section {
+.access-section {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 253, 241, 0.96));
   border-top: 1px solid rgba(204, 229, 188, 0.72);
   border-bottom: 1px solid rgba(204, 229, 188, 0.72);
 }
 
-.festival-layout-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-  gap: 1rem;
-  align-items: start;
-}
-
-.festival-layout-column {
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-}
-
-.festival-intro-card,
-.festival-action-card {
+.access-card {
   position: relative;
   overflow: hidden;
   padding: 1.35rem;
@@ -772,8 +758,7 @@ input:focus-visible {
   box-shadow: 0 16px 34px rgba(46, 158, 104, 0.1);
 }
 
-.festival-intro-card::after,
-.festival-action-card::after {
+.access-card::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -781,221 +766,79 @@ input:focus-visible {
   pointer-events: none;
 }
 
-.festival-intro-card > *,
-.festival-action-card > * {
+.access-card > * {
   position: relative;
   z-index: 1;
 }
 
-.festival-section-head {
-  max-width: none;
-  margin-bottom: 1.35rem;
-}
-
-.festival-section-head .section-copy {
-  max-width: 52ch;
-}
-
-.festival-secondary-copy {
-  margin-top: 0.75rem;
-  max-width: 52ch;
-  color: var(--color-paragraph);
-  line-height: 1.7;
-}
-
-.festival-badge-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-}
-
-.festival-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  padding: 0.52rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(102, 187, 106, 0.34);
-  background: rgba(232, 247, 209, 0.82);
-  color: var(--dark);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.festival-badge-link {
-  text-decoration: none;
-  transition: transform 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
-}
-
-.festival-badge-link:hover {
-  transform: translateY(-1px);
-  background: rgba(240, 250, 229, 0.96);
-  box-shadow: 0 12px 24px rgba(46, 158, 104, 0.12);
-}
-
-.festival-info-list {
-  display: grid;
-  gap: 0.8rem;
-}
-
-.festival-info-card {
-  padding: 0.95rem 1rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(204, 229, 188, 0.85);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 10px 24px rgba(46, 158, 104, 0.08);
-}
-
-.festival-info-card span {
-  display: block;
-  margin-bottom: 0.35rem;
-  color: var(--dark);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.festival-info-card p {
-  color: var(--color-paragraph);
-  line-height: 1.6;
-}
-
-.festival-gallery {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-  gap: 1rem;
-  align-items: stretch;
-  align-self: start;
-}
-
-.festival-gallery-stack {
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-}
-
-.festival-gallery-card {
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(204, 229, 188, 0.92);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(240, 250, 229, 0.9));
-  box-shadow: 0 16px 34px rgba(46, 158, 104, 0.12);
-  aspect-ratio: 3 / 4;
-}
-
-.festival-gallery-card::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 42%;
-  background: linear-gradient(180deg, rgba(15, 61, 43, 0), rgba(15, 61, 43, 0.5));
-  pointer-events: none;
-}
-
-.festival-gallery-card.is-featured {
-  height: 100%;
-  aspect-ratio: auto;
-}
-
-.festival-gallery-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.festival-gallery-caption {
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 1;
-  display: inline-flex;
-  width: fit-content;
-  min-height: 36px;
-  max-width: calc(100% - 2rem);
-  align-items: center;
-  padding: 0.55rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(15, 61, 43, 0.78);
-  color: #fff;
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.35;
-  backdrop-filter: blur(8px);
-}
-
-.festival-action-card h3 {
+.access-card h3 {
   font-size: clamp(1.28rem, 0.7vw + 1rem, 1.7rem);
   line-height: 1.22;
   color: var(--color-heading);
 }
 
-.festival-action-copy {
+.access-copy {
   margin-top: 0.65rem;
-  max-width: 44ch;
+  max-width: 60ch;
   color: var(--color-paragraph);
   line-height: 1.7;
 }
 
-.festival-action-note {
+.access-note {
   margin-top: 0.7rem;
-  max-width: 44ch;
+  max-width: 60ch;
   color: var(--color-paragraph);
   line-height: 1.7;
 }
 
-.festival-inline-link {
+.access-inline-link {
   color: var(--dark);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.festival-inline-link:hover {
+.access-inline-link:hover {
   color: var(--dark-secondary);
 }
 
-.festival-download-grid {
+.access-download-grid {
   margin-top: 1.2rem;
   margin-bottom: 0;
 }
 
-.festival-download-card {
+.access-download-card {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
 }
 
-.festival-card-head {
+.access-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
 
-.festival-download-card h4 {
+.access-download-card h4 {
   font-size: 1.18rem;
   line-height: 1.3;
   color: var(--color-heading);
 }
 
-.festival-download-card p {
+.access-download-card p {
   color: var(--color-paragraph);
   line-height: 1.6;
 }
 
-.festival-download-card .btn {
+.access-download-card .btn {
   margin-top: auto;
+  line-height: 1.25;
+  white-space: normal;
+  text-align: center;
 }
 
-.festival-platform-label {
+.access-platform-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1012,62 +855,8 @@ input:focus-visible {
   letter-spacing: 0.04em;
 }
 
-.festival-platform-icon {
+.access-platform-icon {
   color: var(--dark);
-}
-
-.festival-steps-card .timeline {
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
-  margin-top: 1.2rem;
-}
-
-.festival-steps-card .timeline-item {
-  padding: 1.05rem 1.1rem;
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.timeline-item {
-  border-radius: 1rem;
-  padding: 1.2rem;
-  border: 1px solid var(--border);
-  background: var(--white);
-  position: relative;
-  animation: rise-in 0.55s ease both;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-
-.timeline-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(46, 158, 104, 0.2);
-  border-color: rgba(102, 187, 106, 0.7);
-}
-
-.timeline-index {
-  width: 33px;
-  height: 33px;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  border-radius: 999px;
-  background: var(--bg-gradient-reverse);
-  color: #fff;
-  margin-bottom: 0.8rem;
-}
-
-.timeline-item h3,
-.timeline-item h4 {
-  margin-bottom: 0.45rem;
-}
-
-.timeline-item p {
-  color: var(--color-paragraph);
-  line-height: 1.6;
 }
 
 .benefits-section {
@@ -1096,13 +885,11 @@ input:focus-visible {
 }
 
 .feature-showcase .feature-showcase-card:nth-child(2),
-.timeline .timeline-item:nth-child(2),
 .benefit-grid .benefit-card:nth-child(2) {
   animation-delay: 0.08s;
 }
 
 .feature-showcase .feature-showcase-card:nth-child(3),
-.timeline .timeline-item:nth-child(3),
 .benefit-grid .benefit-card:nth-child(3) {
   animation-delay: 0.16s;
 }
@@ -2312,33 +2099,9 @@ input:focus-visible {
   .feature-intro-grid,
   .feature-showcase-card,
   .feature-detail-strip,
-  .festival-layout-grid,
-  .festival-gallery,
-  .timeline,
   .benefit-grid,
   .qr-role-grid {
     grid-template-columns: 1fr;
-  }
-
-  .festival-layout-column {
-    display: contents;
-    min-height: 0;
-  }
-
-  .festival-access-card {
-    order: 1;
-  }
-
-  .festival-intro-card {
-    order: 2;
-  }
-
-  .festival-gallery {
-    order: 3;
-  }
-
-  .festival-steps-card {
-    order: 4;
   }
 
   .feature-showcase-card.is-reversed {
@@ -2357,11 +2120,6 @@ input:focus-visible {
   .feature-media {
     min-height: 280px;
   }
-
-  .festival-gallery-card.is-featured {
-    height: auto;
-    aspect-ratio: 3 / 4;
-  }
 }
 
 @media (max-width: 640px) {
@@ -2373,7 +2131,6 @@ input:focus-visible {
     padding: 3.4rem 0;
   }
 
-  .timeline,
   .benefit-grid,
   .feature-mini-grid,
   .footer-grid,
@@ -2436,8 +2193,7 @@ input:focus-visible {
 
   .feature-intro-card,
   .feature-detail-copy,
-  .festival-intro-card,
-  .festival-action-card,
+  .access-card,
   .feature-mini-card,
   .contact-info-item {
     padding: 0.95rem;
@@ -2451,13 +2207,6 @@ input:focus-visible {
     width: 34px;
     height: 34px;
     margin-bottom: 0.8rem;
-  }
-
-  .festival-gallery-caption {
-    left: 0.85rem;
-    right: 0.85rem;
-    bottom: 0.85rem;
-    font-size: 0.78rem;
   }
 
   .hero-actions {
