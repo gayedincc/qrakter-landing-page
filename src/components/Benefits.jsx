@@ -16,6 +16,7 @@ const benefits = [
   },
 ]
 
+
 function Benefits() {
   return (
     <section className="section benefits-section">
