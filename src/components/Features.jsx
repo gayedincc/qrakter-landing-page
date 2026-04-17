@@ -95,7 +95,7 @@ function Features() {
   return (
     <section id="ozellikler" className="section features-section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <p className="eyebrow">Özellikler</p>
           <h2>QRAKTER, kaza öncesi hazırlığı ve kaza anı yönlendirmesini tek akışta bir araya getirir.</h2>
           <p className="section-copy">
@@ -105,8 +105,8 @@ function Features() {
         </div>
 
         <div className="feature-intro-grid">
-          {introHighlights.map((item) => (
-            <article key={item.title} className="feature-intro-card">
+          {introHighlights.map((item, i) => (
+            <article key={item.title} className="feature-intro-card reveal" style={{ transitionDelay: `${i * 0.08}s` }}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
@@ -117,7 +117,7 @@ function Features() {
           {features.map((feature, index) => (
             <article
               key={feature.id}
-              className={`feature-showcase-card ${index % 2 === 1 ? 'is-reversed' : ''}`}
+              className={`feature-showcase-card reveal ${index % 2 === 1 ? 'is-reversed' : ''}`}
             >
               <div className="feature-media">
                 <span className="feature-id">{feature.id}</span>
