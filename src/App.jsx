@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
 import ContactForm from './components/ContactForm'
+import MotoFestSection from './components/MotoFestSection'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import FloatingStoreButtons from './components/FloatingStoreButtons'
@@ -20,6 +21,7 @@ function LandingPage() {
   return (
     <>
       <Hero />
+      <MotoFestSection />
       <HowItWorks />
       <Features />
       <ContactForm />
@@ -42,6 +44,26 @@ function App() {
     }
   }, [])
 
+  // Global scroll-reveal for .reveal elements
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+
+    const els = document.querySelectorAll('.reveal')
+    els.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [pathname])
+
   const isGiveawayPage = pathname === '/cekilis'
 
   return (
@@ -51,7 +73,6 @@ function App() {
         {isGiveawayPage ? <GiveawayPage /> : <LandingPage />}
       </main>
       <Footer />
-      {!isGiveawayPage ? <FloatingStoreButtons /> : null}
       {!isGiveawayPage ? <ScrollToTopButton /> : null}
     </div>
   )
