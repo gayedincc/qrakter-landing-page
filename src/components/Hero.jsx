@@ -55,6 +55,10 @@ function Hero() {
             QRAKTER; profil, sağlık, araç ve evrak verilerini düzenli tutar, kritik ekranları hızlı erişime açar ve
             ihtiyaç anında süreci daha sakin yönetmene yardımcı olur.
           </p>
+          <p className="hero-description reveal" style={{ marginTop: '0.85rem' }}>
+            Çekilişe katıl, kazanma şansını yakala. Android için Play Store üzerinden, iOS için web üzerinden hemen
+            katılım sağlayabilirsin.
+          </p>
           <div className="hero-store-btns reveal" style={{ marginTop: '1.75rem', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '0.7rem' }}>
             <a
               className="btn floating-store-btn is-android"

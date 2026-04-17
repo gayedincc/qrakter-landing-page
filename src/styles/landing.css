@@ -2313,6 +2313,315 @@ input:focus-visible {
   transform: translateY(0);
 }
 
+/* ─── Giveaway Modal ───────────────────────────────────────────────── */
+/* Motofest renk paleti: koyu kırmızı/turuncu — ana yeşil temadan bilerek farklı */
+.giveaway-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(8, 4, 2, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: gm-backdrop-in 0.3s ease both;
+}
+
+@keyframes gm-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.giveaway-modal {
+  position: relative;
+  width: min(460px, 100%);
+  background: #14080a;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(220, 60, 30, 0.25),
+    0 32px 80px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(200, 40, 15, 0.15);
+  outline: none;
+  animation: gm-modal-in 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+@keyframes gm-modal-in {
+  from { opacity: 0; transform: translateY(32px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Header (image + gradient overlay) ── */
+.giveaway-modal-header {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
+}
+
+.giveaway-modal-header-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2b0c06 0%, #5c1a0a 40%, #8c2e0e 70%, #c04a14 100%);
+}
+
+.giveaway-modal-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.giveaway-modal-orb:first-child {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(255, 120, 30, 0.4), transparent 65%);
+}
+
+.giveaway-modal-orb--2 {
+  width: 180px;
+  height: 180px;
+  bottom: -60px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(200, 30, 10, 0.35), transparent 65%);
+}
+
+.giveaway-modal-header-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.4rem 1.5rem 0;
+}
+
+
+
+/* Close button — sits inside header */
+.giveaway-modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.giveaway-modal-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(1.1);
+}
+
+.giveaway-modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Badge */
+.giveaway-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 110, 50, 0.35);
+  background: rgba(255, 80, 20, 0.12);
+  padding: 0.28rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffb085;
+  margin-bottom: 0.7rem;
+}
+
+.giveaway-modal-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff6020;
+  box-shadow: 0 0 6px #ff6020;
+  animation: motofest-pulse 1.8s ease infinite;
+}
+
+/* Title */
+.giveaway-modal-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 5vw, 2.1rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.giveaway-modal-title-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffcc66);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Body section (light bg) ── */
+.giveaway-modal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: #1c0f0b;
+}
+
+/* Prize row — image + info side by side */
+.giveaway-modal-prize {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 100, 30, 0.08);
+  border: 1px solid rgba(255, 100, 30, 0.2);
+  margin-bottom: 1rem;
+}
+
+.giveaway-modal-prize-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.giveaway-modal-prize-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.giveaway-modal-prize-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+  margin: 0 0 0.3rem;
+}
+
+.giveaway-modal-prize-desc {
+  font-size: 0.87rem;
+  color: #c09070;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.giveaway-modal-prize-desc strong {
+  color: #ff8c42;
+}
+
+/* Info list */
+.giveaway-modal-info {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.giveaway-modal-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #a08070;
+  line-height: 1.55;
+}
+
+.giveaway-modal-info li svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #cc4a1a;
+  margin-top: 2px;
+}
+
+.giveaway-modal-info li strong {
+  color: #ffb085;
+}
+
+/* Actions */
+.giveaway-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.giveaway-modal-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 0.9rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.giveaway-modal-btn.is-android {
+  background: linear-gradient(90deg, #c03010 0%, #e85d04 60%, #ff8c42 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 20px rgba(200, 60, 10, 0.45);
+}
+
+.giveaway-modal-btn.is-android:hover {
+  box-shadow: 0 8px 28px rgba(220, 80, 10, 0.55);
+  transform: translateY(-2px);
+}
+
+.giveaway-modal-btn.is-ios {
+  background: transparent;
+  color: #ffb085;
+  border: 1.5px solid rgba(255, 100, 30, 0.35);
+}
+
+.giveaway-modal-btn.is-ios:hover {
+  background: rgba(255, 100, 30, 0.1);
+  border-color: rgba(255, 120, 50, 0.55);
+  transform: translateY(-2px);
+}
+
+.giveaway-modal-btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .giveaway-modal {
+    border-radius: 1.25rem;
+  }
+
+  .giveaway-modal-header-content {
+    padding: 1.1rem 1.25rem 0;
+  }
+
+  .giveaway-modal-prize-img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .giveaway-modal-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+}
+
 /* ─── MotoFest Section ─────────────────────────────────────────────── */
 .motofest-section {
   position: relative;

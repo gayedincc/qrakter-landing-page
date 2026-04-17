@@ -33,7 +33,7 @@ const EVENT_DETAILS = [
   },
 ];
 
-function MotoFestSection() {
+export default function MotoFestSection() {
   const sectionRef = useRef(null);
   const galleryRef = useRef(null);
 
@@ -165,5 +165,3 @@ function MotoFestSection() {
     </section>
   );
 }
-
-export default MotoFestSection;
