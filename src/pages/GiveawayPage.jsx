@@ -615,7 +615,6 @@ const DrawTrack = memo(function DrawTrack({
 const ParticipantPanel = memo(function ParticipantPanel({
   participants,
   isParticipantsLoading,
-  hasLoadedParticipants,
   winnerIndex,
   emptyMessage,
 }) {
@@ -701,14 +700,6 @@ const ParticipantPanel = memo(function ParticipantPanel({
           <p className="draw-status-label">Katılımcı Listesi</p>
           <h2>Katılımcılar</h2>
         </div>
-
-        <span className="participant-note">
-          {isParticipantsLoading
-            ? "..."
-            : hasLoadedParticipants
-              ? `${participants.length} kişi`
-              : "Bekliyor"}
-        </span>
       </div>
 
       <div
@@ -813,12 +804,6 @@ function GiveawayPage() {
           : participants.length
             ? "Katılımcılar hazır."
             : "Bu çekiliş için henüz katılımcı bulunmuyor.";
-  const participantBadgeLabel = isParticipantsLoading
-    ? "Yükleniyor"
-    : hasLoadedParticipants
-      ? `${participants.length} Katılımcı`
-      : "Liste Bekliyor";
-
   const syncParticipantsToPanels = (nextParticipants) => {
     setParticipants(nextParticipants);
     setAnimationParticipants(nextParticipants);
@@ -1434,7 +1419,6 @@ function GiveawayPage() {
           </div>
 
           <div className="giveaway-hero-actions">
-            <span className="giveaway-badge">{participantBadgeLabel}</span>
             <a className="btn btn-secondary" href="/">
               Ana Sayfaya Dön
             </a>
@@ -1581,14 +1565,6 @@ function GiveawayPage() {
                   <p className="draw-status-label">Katılımcı Listesi</p>
                   <h2>Katılımcılar</h2>
                 </div>
-
-                <span className="participant-note">
-                  {isParticipantsLoading
-                    ? "..."
-                    : hasLoadedParticipants
-                      ? `${participants.length} kişi`
-                      : "Bekliyor"}
-                </span>
               </div>
 
               <ol className="participant-list">
@@ -1612,7 +1588,6 @@ function GiveawayPage() {
             <ParticipantPanel
               participants={participants}
               isParticipantsLoading={isParticipantsLoading}
-              hasLoadedParticipants={hasLoadedParticipants}
               winnerIndex={winnerIndex}
               emptyMessage={panelEmptyMessage}
             />
