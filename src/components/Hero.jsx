@@ -1,10 +1,5 @@
 import { useEffect, useRef } from 'react'
 import motorZayfixImage from '../assets/motor-zayfix.png'
-import { AndroidIcon, AppleIcon } from './StoreIcons'
-
-const ANDROID_DOWNLOAD_URL =
-  "https://play.google.com/store/apps/details?id=com.everion.qrakter.app&pcampaignid=web_share";
-const IOS_PREREGISTER_URL = "https://app.zayfix.com";
 
 function Hero() {
   const sectionRef = useRef(null)
@@ -55,32 +50,6 @@ function Hero() {
             QRAKTER; profil, sağlık, araç ve evrak verilerini düzenli tutar, kritik ekranları hızlı erişime açar ve
             ihtiyaç anında süreci daha sakin yönetmene yardımcı olur.
           </p>
-          <p className="hero-description reveal" style={{ marginTop: '0.85rem' }}>
-            Çekilişe katıl, kazanma şansını yakala. Android için Play Store üzerinden, iOS için web üzerinden hemen
-            katılım sağlayabilirsin.
-          </p>
-          <div className="hero-store-btns reveal" style={{ marginTop: '1.75rem', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '0.7rem' }}>
-            <a
-              className="btn floating-store-btn is-android"
-              style={{ width: 'auto' }}
-              href={ANDROID_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <AndroidIcon className="floating-store-icon" />
-              <span>Android için indir</span>
-            </a>
-            <a
-              className="btn floating-store-btn is-ios"
-              style={{ width: 'auto' }}
-              href={IOS_PREREGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <AppleIcon className="floating-store-icon" />
-              <span>iOS ön kayıt / Web'den erişim</span>
-            </a>
-          </div>
         </div>
 
         <div className="hero-visual" ref={visualRef} style={{ transition: 'transform 0.12s ease-out', willChange: 'transform' }}>

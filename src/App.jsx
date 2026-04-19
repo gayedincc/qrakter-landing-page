@@ -4,11 +4,8 @@ import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
 import ContactForm from './components/ContactForm'
-import MotoFestSection from './components/MotoFestSection'
-import GiveawayModal from './components/GiveawayModal'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
-import FloatingStoreButtons from './components/FloatingStoreButtons'
 import GiveawayPage from './pages/GiveawayPage'
 import './styles/landing.css'
 
@@ -22,7 +19,6 @@ function LandingPage() {
   return (
     <>
       <Hero />
-      <MotoFestSection />
       <HowItWorks />
       <Features />
       <ContactForm />
@@ -66,13 +62,9 @@ function App() {
   }, [pathname])
 
   const isGiveawayPage = pathname === '/cekilis'
-  const [showModal, setShowModal] = useState(() => !isGiveawayPage)
-
-  const handleCloseModal = () => setShowModal(false)
 
   return (
     <div className="app-shell">
-      {showModal && !isGiveawayPage && <GiveawayModal onClose={handleCloseModal} />}
       <Navbar brandHref={isGiveawayPage ? '/' : '#ana-sayfa'} headerId={isGiveawayPage ? undefined : 'ana-sayfa'} />
       <main>
         {isGiveawayPage ? <GiveawayPage /> : <LandingPage />}
