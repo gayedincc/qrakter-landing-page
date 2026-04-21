@@ -793,7 +793,7 @@ input:focus-visible {
   pointer-events: none;
 }
 
-.access-card > * {
+.access-card>* {
   position: relative;
   z-index: 1;
 }
@@ -1799,6 +1799,362 @@ input:focus-visible {
   margin-top: 1.35rem;
 }
 
+.event-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(7, 20, 45, 0.64);
+  backdrop-filter: blur(9px);
+  animation: modal-fade-in 0.3s ease;
+}
+
+.event-modal {
+  position: relative;
+  width: min(1040px, 100%);
+  max-height: min(88vh, 760px);
+  overflow: auto;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(113, 219, 255, 0.32);
+  background:
+    radial-gradient(circle at 88% -14%, rgba(88, 224, 255, 0.22), transparent 48%),
+    radial-gradient(circle at 18% 112%, rgba(109, 126, 248, 0.2), transparent 44%),
+    linear-gradient(170deg, #092549 0%, #11477f 46%, #1a78b1 100%);
+  box-shadow: 0 24px 64px rgba(2, 9, 24, 0.58);
+  color: #e9f8ff;
+  animation: modal-rise 0.38s ease;
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  min-height: 38px;
+  min-width: 38px;
+  padding: 0.35rem;
+  border: 1px solid rgba(136, 232, 255, 0.46);
+  border-radius: 999px;
+  background: rgba(6, 43, 86, 0.88);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+
+.event-modal-close:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  background: rgba(12, 70, 128, 0.95);
+}
+
+.event-modal-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 0.75rem;
+  padding: 1.15rem;
+}
+
+.event-modal-content {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.event-modal-description {
+  color: #d7f4ff;
+  line-height: 1.55;
+}
+
+.campaign-inline-link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.event-modal-description .campaign-inline-link {
+  color: #ffffff;
+}
+
+.event-modal-description .campaign-inline-link:hover {
+  color: #47dbff;
+}
+
+.motofest-copy-card .campaign-inline-link {
+  color: #19507b;
+}
+
+.motofest-copy-card .campaign-inline-link:hover {
+  color: #47dbff;
+}
+
+.event-modal-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-self: flex-start;
+  min-height: 28px;
+  padding: 0.34rem 0.68rem;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 233, 255, 0.35);
+  background: rgba(9, 62, 115, 0.58);
+  color: #c9f3ff;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.event-modal-content h2 {
+  font-size: clamp(1.75rem, 0.8vw + 1.2rem, 2.55rem);
+  line-height: 1.08;
+  color: #ffffff;
+}
+
+.event-modal-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.58rem;
+}
+
+.event-modal-actions .btn {
+  width: 100%;
+  min-height: 40px;
+  padding: 0.62rem 0.95rem;
+}
+
+.btn-instagram {
+  background: linear-gradient(135deg, #47dbff 0%, #0099ff 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(71, 219, 255, 0.4);
+}
+
+.event-modal-prize-card {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.58rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(141, 228, 255, 0.34);
+  background: rgba(6, 53, 101, 0.62);
+}
+
+.event-modal-prize-card img {
+  width: 84px;
+  height: 84px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  border: 1px solid rgba(157, 235, 255, 0.34);
+}
+
+.event-modal-prize-card strong {
+  display: block;
+  color: #f3fbff;
+  font-size: 1rem;
+}
+
+.event-modal-prize-card p {
+  margin-top: 0.2rem;
+  color: #bdeeff;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.event-modal-note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.46rem;
+}
+
+.event-modal-note-list li {
+  position: relative;
+  padding-left: 1rem;
+  color: #d7f4ff;
+  line-height: 1.4;
+  font-size: 0.96rem;
+}
+
+.event-modal-note-list li::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #47dbff, #95f0ff);
+}
+
+.event-modal-reel {
+  overflow: hidden;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(137, 227, 255, 0.35);
+  background: rgba(5, 39, 78, 0.6);
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.event-modal-reel-label {
+  margin: 0;
+  color: #c8f6ff;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.event-modal-reel iframe {
+  width: 100%;
+  min-height: 0;
+  height: 470px;
+  border: 0;
+  border-radius: 0.9rem;
+}
+
+.motofest-platform-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.45rem;
+}
+
+.motofest-section {
+  background:
+    radial-gradient(circle at right top, rgba(94, 222, 255, 0.2), transparent 52%),
+    linear-gradient(180deg, #eaf6ff 0%, #deefff 100%);
+}
+
+.motofest-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.motofest-copy-card,
+.motofest-reel-card {
+  border-radius: 1.35rem;
+  border: 1px solid rgba(135, 219, 255, 0.42);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 40px rgba(13, 70, 123, 0.14);
+}
+
+.motofest-copy-card {
+  padding: 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.motofest-copy-card h2 {
+  font-size: clamp(2rem, 1vw + 1.2rem, 2.75rem);
+  line-height: 1.05;
+  color: #0f4779;
+}
+
+.motofest-copy-card p {
+  color: #19507b;
+  line-height: 1.7;
+}
+
+.motofest-prize-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(141, 223, 255, 0.45);
+  background: #f1f9ff;
+}
+
+.motofest-prize-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 0.85rem;
+  object-fit: cover;
+  border: 1px solid rgba(138, 219, 255, 0.45);
+}
+
+.motofest-prize-card strong {
+  display: block;
+  color: #0d477a;
+  font-size: 1.16rem;
+}
+
+.motofest-prize-card p {
+  margin-top: 0.2rem;
+  color: #11669d;
+  font-weight: 600;
+}
+
+.motofest-note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.motofest-note-list li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: #1a517f;
+  line-height: 1.58;
+}
+
+.motofest-note-list li::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 999px;
+  background: #2db6ec;
+}
+
+.motofest-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.motofest-reel-card {
+  overflow: hidden;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+  background:
+    radial-gradient(circle at top right, rgba(135, 231, 255, 0.24), transparent 46%),
+    #f8fcff;
+}
+
+.motofest-reel-label {
+  color: #0b4a7f;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.motofest-reel-card iframe {
+  width: 100%;
+  min-height: 560px;
+  border: 0;
+  border-radius: 1rem;
+}
+
 .footer {
   margin-top: 1rem;
   border-top: 1px solid var(--border);
@@ -2147,6 +2503,31 @@ input:focus-visible {
   .feature-media {
     min-height: 280px;
   }
+
+  .event-modal {
+    max-height: min(92vh, 840px);
+  }
+
+  .event-modal-layout {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .event-modal-content {
+    gap: 0.9rem;
+  }
+
+  .event-modal-reel iframe {
+    height: 460px;
+  }
+
+  .motofest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .motofest-reel-card iframe {
+    min-height: 500px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -2281,6 +2662,56 @@ input:focus-visible {
 
   .winner-modal-detail.is-wide {
     grid-column: auto;
+  }
+
+  .event-modal {
+    border-radius: 1.25rem;
+  }
+
+  .event-modal-content {
+    gap: 0.85rem;
+  }
+
+  .event-modal-content h2 {
+    font-size: clamp(1.55rem, 3vw + 0.6rem, 2.1rem);
+  }
+
+  .event-modal-actions {
+    display: grid;
+  }
+
+  .event-modal-actions .btn {
+    width: 100%;
+  }
+
+  .event-modal-prize-card {
+    grid-template-columns: 76px 1fr;
+  }
+
+  .event-modal-prize-card img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .event-modal-reel {
+    padding: 0.75rem;
+  }
+
+  .event-modal-reel iframe {
+    height: 340px;
+  }
+
+  .motofest-prize-card {
+    grid-template-columns: 92px 1fr;
+  }
+
+  .motofest-prize-card img {
+    width: 92px;
+    height: 92px;
+  }
+
+  .motofest-reel-card iframe {
+    min-height: 420px;
   }
 }
 
