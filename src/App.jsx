@@ -7,7 +7,7 @@ import Features from './components/Features'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
-import MotoFestSection from './components/MotoFestSection'
+import GiveawayPage from './pages/GiveawayPage'
 import hediyeGorseli from './assets/zayfix-hediye.jpg'
 import './styles/landing.css'
 
@@ -17,11 +17,16 @@ const IOS_PREREGISTER_URL = 'https://app.zayfix.com'
 const ZAYFIX_INSTAGRAM_URL =
   'https://www.instagram.com/zayfix.tr?igsh=MWxoeDh6ZGx3dHQ4cA=='
 
+function normalizePath(pathname) {
+  const trimmedPath = pathname.replace(/\/+$/, '')
+
+  return trimmedPath || '/'
+}
+
 function LandingPage() {
   return (
     <>
       <Hero />
-      <MotoFestSection />
       <HowItWorks />
       <Features />
       <ContactForm />
@@ -30,10 +35,19 @@ function LandingPage() {
 }
 
 function App() {
+  const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname))
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false)
 
   useEffect(() => {
-    setIsPromoModalOpen(true)
+    const handlePopState = () => {
+      setPathname(normalizePath(window.location.pathname))
+    }
+
+    window.addEventListener('popstate', handlePopState)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
   }, [])
 
   useEffect(() => {
@@ -53,10 +67,18 @@ function App() {
     els.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
+
+  const isGiveawayPage = pathname === '/cekilis'
 
   useEffect(() => {
-    if (!isPromoModalOpen) {
+    if (!isGiveawayPage) {
+      setIsPromoModalOpen(true)
+    }
+  }, [isGiveawayPage])
+
+  useEffect(() => {
+    if (!isPromoModalOpen || isGiveawayPage) {
       return undefined
     }
 
@@ -74,16 +96,16 @@ function App() {
       document.body.style.overflow = previousOverflow
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isPromoModalOpen])
+  }, [isPromoModalOpen, isGiveawayPage])
 
   return (
     <div className="app-shell">
-      <Navbar brandHref="#ana-sayfa" headerId="ana-sayfa" />
+      <Navbar brandHref={isGiveawayPage ? '/' : '#ana-sayfa'} headerId={isGiveawayPage ? undefined : 'ana-sayfa'} />
       <main>
-        <LandingPage />
+        {isGiveawayPage ? <GiveawayPage /> : <LandingPage />}
       </main>
 
-      {isPromoModalOpen ? (
+      {isPromoModalOpen && !isGiveawayPage ? (
         <div
           className="event-modal-backdrop"
           role="presentation"
@@ -111,8 +133,7 @@ function App() {
                 <h2 id="event-modal-title">Katıl, şartları tamamla, hediyeni kazan!</h2>
 
                 <p className="event-modal-description">
-                  Uygulamayı indirip kaydını tamamla, ardından
-                  {' '}
+                  Uygulamayı indirip kaydını tamamla, ardından{' '}
                   <a
                     className="campaign-inline-link"
                     href={ZAYFIX_INSTAGRAM_URL}
@@ -120,8 +141,7 @@ function App() {
                     rel="noopener noreferrer"
                   >
                     Zayfix Instagram hesabını
-                  </a>
-                  {' '}
+                  </a>{' '}
                   takip edip son gönderiyi beğen. Katılım şartlarını sağlayan kullanıcılar arasından 10 kişi hediye kazanacaktır.
                 </p>
 
@@ -188,7 +208,7 @@ function App() {
       ) : null}
 
       <Footer />
-      <ScrollToTopButton />
+      {!isGiveawayPage ? <ScrollToTopButton /> : null}
     </div>
   )
 }
