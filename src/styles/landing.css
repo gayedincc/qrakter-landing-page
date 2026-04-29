@@ -832,6 +832,93 @@ input:focus-visible {
   color: var(--dark-secondary);
 }
 
+.access-motofest-panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(27, 164, 152, 0.35);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(14, 196, 184, 0.13), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(255, 214, 0, 0.12), transparent 44%),
+    linear-gradient(180deg, #f2fffd 0%, #fffde8 100%);
+}
+
+.access-motofest-eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #0e7490;
+}
+
+.access-motofest-panel h4 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.02rem, 0.6vw + 0.95rem, 1.28rem);
+  color: #0b4d66;
+}
+
+.access-motofest-copy {
+  margin-top: 0.55rem;
+  color: #16607a;
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.access-motofest-steps {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.access-motofest-step {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.access-motofest-step span {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.access-motofest-step:nth-child(1) span {
+  background: linear-gradient(135deg, #0ec4b8 0%, #0891b2 100%);
+}
+
+.access-motofest-step:nth-child(2) span {
+  background: linear-gradient(135deg, #ffd600 0%, #f59e0b 100%);
+  color: #1c1400;
+}
+
+.access-motofest-step:nth-child(3) span {
+  background: linear-gradient(135deg, #ff6d00 0%, #e53935 100%);
+}
+
+.access-motofest-step p {
+  margin: 0;
+  color: #155e75;
+  line-height: 1.55;
+}
+
+.access-motofest-actions {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.55rem;
+}
+
+.access-motofest-actions .btn {
+  min-height: 46px;
+}
+
 .access-download-grid {
   margin-top: 1.2rem;
   margin-bottom: 0;
@@ -2760,6 +2847,18 @@ input:focus-visible {
     padding: 0.95rem;
   }
 
+  .access-motofest-panel {
+    padding: 0.85rem;
+  }
+
+  .access-motofest-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .access-motofest-actions .btn {
+    width: 100%;
+  }
+
   .feature-mini-card {
     min-height: unset;
   }
@@ -2923,4 +3022,707 @@ input:focus-visible {
 .reveal.is-revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ─── Mersin Motofest Section ─────────────────────────────────────── */
+
+/* Festival renk paleti: Akdeniz turkuazu, altın sarısı, canlı turuncu */
+.mersin-mf-section {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(14, 196, 184, 0.18), transparent 48%),
+    radial-gradient(circle at 10% 90%, rgba(255, 214, 0, 0.16), transparent 48%),
+    radial-gradient(circle at 50% 0%, rgba(255, 109, 0, 0.1), transparent 44%),
+    linear-gradient(180deg, #e6fdfb 0%, #fffde6 100%);
+}
+
+.mersin-mf-grid {
+  display: grid;
+  grid-template-columns: 1fr min(360px, 42%);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.mersin-mf-copy-card,
+.mersin-mf-reel-card {
+  border-radius: 1.35rem;
+  border: 1px solid rgba(14, 196, 184, 0.32);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 16px 40px rgba(0, 80, 75, 0.1);
+}
+
+.mersin-mf-copy-card {
+  padding: clamp(1rem, 3vw, 1.4rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.mersin-mf-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0891b2;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.mersin-mf-copy-card h2 {
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.6rem);
+  line-height: 1.08;
+  color: #0c4a6e;
+}
+
+.mersin-mf-desc {
+  color: #155e75;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Chips ── */
+.mersin-mf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.mersin-mf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mersin-mf-chip:nth-child(1) {
+  border: 1px solid rgba(14, 196, 184, 0.45);
+  background: #e6fdfb;
+  color: #0e7490;
+}
+
+.mersin-mf-chip:nth-child(2) {
+  border: 1px solid rgba(255, 214, 0, 0.55);
+  background: #fffde6;
+  color: #92400e;
+}
+
+/* ── Steps ── */
+.mersin-mf-steps {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.mersin-mf-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.mersin-mf-step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin-top: 0.12rem;
+}
+
+.mersin-mf-step:nth-child(1) .mersin-mf-step-num {
+  background: linear-gradient(135deg, #0ec4b8 0%, #0891b2 100%);
+  box-shadow: 0 3px 8px rgba(8, 145, 178, 0.38);
+}
+
+.mersin-mf-step:nth-child(2) .mersin-mf-step-num {
+  background: linear-gradient(135deg, #ffd600 0%, #f59e0b 100%);
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.38);
+  color: #1c1400;
+}
+
+.mersin-mf-step:nth-child(3) .mersin-mf-step-num {
+  background: linear-gradient(135deg, #ff6d00 0%, #e53935 100%);
+  box-shadow: 0 3px 8px rgba(229, 57, 53, 0.38);
+}
+
+.mersin-mf-step-body strong {
+  display: block;
+  color: #0c4a6e;
+  font-size: 0.96rem;
+}
+
+.mersin-mf-step-body p {
+  margin: 0.18rem 0 0;
+  color: #155e75;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ── Info list ── */
+.mersin-mf-info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.mersin-mf-info-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--dark, #0e2a35);
+  font-size: clamp(0.82rem, 2vw, 0.92rem);
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* ── Actions ── */
+.mersin-mf-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.65rem;
+}
+
+.mersin-mf-btn-ios {
+  background: #e6fdfb;
+  color: #0e7490;
+  border: 1.5px solid rgba(14, 196, 184, 0.5);
+  font-weight: 600;
+}
+
+.mersin-mf-btn-ios:hover {
+  background: #ccfaf8;
+}
+
+.mersin-btn-icon {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+}
+
+.mersin-mf-btn-detail {
+  background: transparent;
+  border: 1.5px solid #0ec4b8;
+  color: #0891b2;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.mersin-mf-btn-detail:hover {
+  background: #e6fdfb;
+  transform: translateY(-1px);
+}
+
+.btn-mersin-ig {
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 60%, #fcb045 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-mersin-ig:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(131, 58, 180, 0.45);
+}
+
+.btn-mersin-watch {
+  background: linear-gradient(135deg, #ff6d00 0%, #e53935 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn-mersin-watch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(255, 109, 0, 0.48);
+}
+
+/* ── Reel Card ── */
+.mersin-mf-reel-card {
+  overflow: hidden;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  background:
+    radial-gradient(circle at top right, rgba(14, 196, 184, 0.14), transparent 52%),
+    radial-gradient(circle at bottom left, rgba(255, 214, 0, 0.12), transparent 52%),
+    #f0fffe;
+}
+
+.mersin-mf-reel-label {
+  color: #0891b2;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.mersin-mf-reel-card iframe {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  min-height: 280px;
+  max-height: 520px;
+  border: 0;
+  border-radius: 1rem;
+}
+
+/* ─── Mersin Motofest Modal ───────────────────────────────────────── */
+
+.mersin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 18, 28, 0.75);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  animation: modal-fade-in 0.3s ease;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.mersin-modal {
+  position: relative;
+  width: min(1020px, 100vw - 2rem);
+  max-width: 100%;
+  max-height: min(88vh, 800px);
+  overflow: auto;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(14, 196, 184, 0.25);
+  background:
+    radial-gradient(circle at 85% -8%, rgba(14, 196, 184, 0.28), transparent 44%),
+    radial-gradient(circle at 5% 105%, rgba(255, 214, 0, 0.2), transparent 42%),
+    radial-gradient(circle at 50% 55%, rgba(255, 109, 0, 0.12), transparent 50%),
+    linear-gradient(165deg, #00171f 0%, #003d4a 48%, #004f5e 100%);
+  box-shadow: 0 24px 64px rgba(0, 18, 28, 0.65);
+  color: #e0f7f4;
+  animation: modal-rise 0.38s ease;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.mersin-modal-close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 1.6rem);
+  right: 1rem;
+  z-index: 10;
+  min-height: 40px;
+  min-width: 40px;
+  padding: 0;
+  border: 1px solid rgba(14, 196, 184, 0.4);
+  border-radius: 999px;
+  background: rgba(0, 45, 58, 0.88);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+
+.mersin-modal-close::before {
+  content: '×';
+  font-size: 1.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mersin-modal-close:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 79, 94, 0.95);
+}
+
+.mersin-modal-layout {
+  display: grid;
+  grid-template-columns: 1fr min(340px, 40%);
+  gap: clamp(0.5rem, 2vw, 1rem);
+  padding: clamp(3.5rem, 5vw, 5rem) clamp(0.8rem, 3vw, 1.2rem) clamp(0.8rem, 3vw, 1.2rem);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mersin-modal-content {
+  display: grid;
+  gap: 0.9rem;
+  overflow-x: hidden;
+  word-break: break-word;
+  align-content: start;
+}
+
+.mersin-modal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  justify-self: flex-start;
+  min-height: 28px;
+  padding: 0.32rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(14, 196, 184, 0.45);
+  background: rgba(0, 61, 74, 0.6);
+  color: #7df5ee;
+  font-size: clamp(0.65rem, 1.5vw, 0.72rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.mersin-modal-content h2 {
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  line-height: 1.08;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.mersin-modal-description {
+  color: #b2ecee;
+  line-height: 1.6;
+  font-size: clamp(0.88rem, 2vw, 1rem);
+  margin: 0;
+}
+
+.mersin-modal-steps-heading {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #0ec4b8;
+}
+
+.mersin-modal-steps {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mersin-modal-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.mersin-modal-step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin-top: 0.14rem;
+}
+
+.mersin-modal-step:nth-child(1) .mersin-modal-step-num {
+  background: linear-gradient(135deg, #0ec4b8 0%, #0891b2 100%);
+  box-shadow: 0 3px 10px rgba(14, 196, 184, 0.45);
+}
+
+.mersin-modal-step:nth-child(2) .mersin-modal-step-num {
+  background: linear-gradient(135deg, #ffd600 0%, #f59e0b 100%);
+  box-shadow: 0 3px 10px rgba(255, 214, 0, 0.45);
+  color: #1c1400;
+}
+
+.mersin-modal-step:nth-child(3) .mersin-modal-step-num {
+  background: linear-gradient(135deg, #ff6d00 0%, #e53935 100%);
+  box-shadow: 0 3px 10px rgba(255, 109, 0, 0.45);
+}
+
+.mersin-modal-step-body strong {
+  display: block;
+  color: #e0f7f4;
+  font-size: 0.96rem;
+}
+
+.mersin-modal-step-body p {
+  margin: 0.2rem 0 0;
+  color: #a8e6e2;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.mersin-modal-info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mersin-modal-info-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7df5ee;
+  font-size: clamp(0.82rem, 2vw, 0.94rem);
+  line-height: 1.5;
+}
+
+.mersin-info-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+  opacity: 0.85;
+}
+
+.mersin-modal-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: clamp(0.4rem, 1.5vw, 0.58rem);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mersin-modal-actions .btn {
+  width: 100%;
+  min-height: clamp(36px, 5vw, 40px);
+  padding: clamp(0.5rem, 1.5vw, 0.65rem) clamp(0.7rem, 1.5vw, 1rem);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  word-break: break-word;
+}
+
+.mersin-modal-actions-priority {
+  margin-bottom: 0.2rem;
+}
+
+.mersin-modal-btn-ios {
+  background: rgba(0, 61, 74, 0.65);
+  color: #7df5ee;
+  border: 1.5px solid rgba(14, 196, 184, 0.45);
+  font-weight: 600;
+}
+
+.mersin-modal-btn-ios:hover {
+  background: rgba(0, 79, 94, 0.8);
+}
+
+.mersin-modal-reel {
+  overflow: hidden;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(14, 196, 184, 0.28);
+  background:
+    radial-gradient(circle at top right, rgba(255, 214, 0, 0.14), transparent 50%),
+    rgba(0, 25, 35, 0.65);
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.mersin-modal-reel-label {
+  margin: 0;
+  color: #0ec4b8;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.mersin-modal-reel iframe {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  min-height: 280px;
+  max-height: 580px;
+  border: 0;
+  border-radius: 0.9rem;
+}
+
+/* ── Second On-Page Motofest Area ── */
+.mersin-mf-hub-section {
+  padding-top: 0;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(14, 196, 184, 0.1), transparent 46%),
+    radial-gradient(circle at 0% 100%, rgba(255, 214, 0, 0.12), transparent 50%),
+    linear-gradient(180deg, #fffde6 0%, #e9fffb 100%);
+}
+
+.mersin-mf-hub-grid {
+  display: grid;
+  grid-template-columns: 1fr min(360px, 42%);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.mersin-mf-hub-copy,
+.mersin-mf-hub-video {
+  border-radius: 1.35rem;
+  border: 1px solid rgba(14, 196, 184, 0.3);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 16px 40px rgba(0, 80, 75, 0.1);
+}
+
+.mersin-mf-hub-copy {
+  padding: clamp(1rem, 3vw, 1.4rem);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.mersin-mf-hub-copy h3 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2vw + 0.6rem, 2.1rem);
+  line-height: 1.12;
+  color: #0c4a6e;
+}
+
+.mersin-mf-hub-copy > p {
+  color: #155e75;
+  line-height: 1.7;
+}
+
+.mersin-mf-hub-steps {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.mersin-mf-hub-video {
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  background:
+    radial-gradient(circle at top right, rgba(14, 196, 184, 0.14), transparent 50%),
+    #f2fffe;
+}
+
+.mersin-mf-hub-video iframe {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  min-height: 280px;
+  max-height: 560px;
+  border: 0;
+  border-radius: 0.95rem;
+}
+
+/* ─── Responsive: Mersin Motofest ────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .mersin-mf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mersin-mf-hub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mersin-mf-reel-card iframe {
+    max-height: 420px;
+  }
+
+  .mersin-mf-hub-video iframe {
+    max-height: 430px;
+  }
+
+  .mersin-modal-layout {
+    grid-template-columns: 1fr;
+    padding: 3.8rem 1rem 1rem;
+  }
+
+  .mersin-modal {
+    max-height: min(92vh, 860px);
+  }
+
+  .mersin-modal-reel iframe {
+    max-height: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mersin-mf-copy-card {
+    padding: 0.9rem;
+  }
+
+  .mersin-mf-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .mersin-mf-actions .btn {
+    width: 100%;
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .mersin-mf-reel-card iframe {
+    max-height: 380px;
+  }
+
+  .mersin-mf-hub-copy {
+    padding: 0.9rem;
+  }
+
+  .mersin-mf-hub-video iframe {
+    max-height: 400px;
+  }
+
+  .mersin-modal-close {
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .mersin-modal-close::before {
+    font-size: 1.3rem;
+  }
+
+  .mersin-modal-layout {
+    padding: 2.8rem 0.8rem 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .mersin-modal-content h2 {
+    font-size: clamp(1.25rem, 3vw, 1.85rem);
+  }
+
+  .mersin-modal-description {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+  }
+
+  .mersin-modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .mersin-modal-actions .btn {
+    width: 100%;
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .mersin-modal-reel {
+    padding: 0.75rem;
+  }
+
+  .mersin-modal-reel iframe {
+    max-height: 420px;
+  }
+
+  .mersin-modal-pill {
+    margin-top: 0.5rem;
+  }
 }
