@@ -106,7 +106,7 @@ function MersinMotoFestModal({ onClose }) {
               <img src={hediyeGorseli} alt="Hediye ürünü KNMaster KN1600CPRO interkom seti" />
               <div>
                 <strong>KNMaster KN1600CPRO</strong>
-                <p>2K kameralı motosiklet interkom seti — 4 kişiye hediye!</p>
+                <p>2K kameralı motosiklet interkom seti — 5 kişiye hediye!</p>
               </div>
             </div>
 
@@ -188,12 +188,12 @@ function MersinMotoFestSection() {
                 <img src={hediyeGorseli} alt="Hediye ürünü KNMaster KN1600CPRO interkom seti" />
                 <div>
                   <strong>KNMaster KN1600CPRO</strong>
-                  <p>2K kameralı motosiklet interkom seti — 4 kişiye hediye!</p>
+                  <p>2K kameralı motosiklet interkom seti — 5 kişiye hediye!</p>
                 </div>
               </div>
 
               <ul className="motofest-note-list" aria-label="Hediye koşulları">
-                <li>Uygulamayı indirip kayıt olan ve Instagram katılım şartlarını sağlayan kullanıcılar arasından 4 kişi seçilecektir.</li>
+                <li>Uygulamayı indirip kayıt olan ve Instagram katılım şartlarını sağlayan kullanıcılar arasından 5 kişi seçilecektir.</li>
                 <li>Katılım için Mersin Motofest Instagram hesabını takip etmek ve son gönderiyi beğenmek gereklidir.</li>
                 <li>Hediye, katılım şartlarını sağlayan kullanıcılar arasından belirlenecektir.</li>
               </ul>
