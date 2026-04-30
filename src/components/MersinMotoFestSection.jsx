@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AndroidIcon, AppleIcon } from './StoreIcons';
+import hediyeGorseli from '../assets/zayfix-hediye.jpg';
 
 function CalendarIcon() {
   return (
@@ -83,11 +84,8 @@ function MersinMotoFestModal({ onClose }) {
             <h2>Mersin Motofest&nbsp;2026</h2>
 
             <p className="mersin-modal-description">
-              Mersin Motor Kulübü&#8217;nün 20. yılında, 1&ndash;3 Mayıs 2026&#8217;da
-              Erdemli / Tırtar Kamp Alanı&#8217;nda düzenlenen Mersin Motosiklet
-              Festivali&#8217;nde motor tutkunlarını bir araya getiriyor. Grup sürüşleri,
-              konserler, stantlar ve sahil keyfini bir arada yaşayabileceğiniz bu festivalde
-              QRAKTER ailesiyle buluşun.
+              1&ndash;3 Mayıs 2026, Erdemli / Tırtar Kamp Alanı&#8217;nda QRAKTER ailesiyle
+              buluşun. Grup sürüşleri, konserler ve sahil keyfi sizi bekliyor.
             </p>
 
             <div className="mersin-modal-actions mersin-modal-actions-priority">
@@ -104,69 +102,58 @@ function MersinMotoFestModal({ onClose }) {
               </a>
             </div>
 
-            <p className="mersin-modal-steps-heading">QRAKTER ile Nasıl Kayıt Olunur?</p>
+            <div className="motofest-prize-card mersin-modal-prize-inline" aria-label="Hediye detayı">
+              <img src={hediyeGorseli} alt="Hediye ürünü KNMaster KN1600CPRO interkom seti" />
+              <div>
+                <strong>KNMaster KN1600CPRO</strong>
+                <p>2K kameralı motosiklet interkom seti — 4 kişiye hediye!</p>
+              </div>
+            </div>
 
             <div className="mersin-modal-steps">
               <div className="mersin-modal-step">
                 <span className="mersin-modal-step-num" aria-hidden="true">1</span>
                 <div className="mersin-modal-step-body">
-                  <strong>Uygulamayı İndir veya Web&#8217;e Eriş</strong>
-                  <p>
-                    Android için Play Store&#8217;dan QRAKTER&#8217;i indir. iOS için App
-                    Store&#8217;dan ön kayıt yap ya da doğrudan web adresine gir.
-                  </p>
+                  <strong>İndir veya Web&#8217;e Eriş</strong>
+                  <p>Android, iOS veya web üzerinden QRAKTER&#8217;e kayıt ol.</p>
                 </div>
               </div>
-
               <div className="mersin-modal-step">
                 <span className="mersin-modal-step-num" aria-hidden="true">2</span>
                 <div className="mersin-modal-step-body">
                   <strong>Profilini Oluştur</strong>
-                  <p>
-                    Sağlık bilgilerini, araç bilgilerini ve acil iletişim kişilerini tek seferlik
-                    doldur. Kaza anında ihtiyacın olan her şey hazır olsun.
-                  </p>
+                  <p>Sağlık ve araç bilgilerini bir kez gir, her yerde hazır olsun.</p>
                 </div>
               </div>
-
               <div className="mersin-modal-step">
                 <span className="mersin-modal-step-num" aria-hidden="true">3</span>
                 <div className="mersin-modal-step-body">
-                  <strong>Festivale Gel, Bizi Bul</strong>
-                  <p>
-                    1&ndash;3 Mayıs&#8217;ta Tırtar Kamp Alanı&#8217;nda QRAKTER standını
-                    ziyaret et; ekibimizle tanış, sorularını sor.
-                  </p>
+                  <strong>Festivale Gel</strong>
+                  <p>Tırtar Kamp Alanı&#8217;nda QRAKTER standını ziyaret et.</p>
                 </div>
               </div>
             </div>
 
             <ul className="mersin-modal-info-list" aria-label="Festival bilgileri">
-              <li>
-                <CalendarIcon />
-                1 Mayıs Cuma (Resmi Tatil) · 2 Mayıs Cumartesi · 3 Mayıs Pazar
-              </li>
-              <li>
-                <PinIcon />
-                Tırtar Kamp Alanı, Erdemli / Mersin
-              </li>
-              <li>
-                <BikeIcon />
-                Grup sürüşleri, konserler, stantlar ve sahil keyfi
-              </li>
+              <li><CalendarIcon />1 Mayıs Cuma · 2 Mayıs Cumartesi · 3 Mayıs Pazar</li>
+              <li><PinIcon />Tırtar Kamp Alanı, Erdemli / Mersin</li>
+              <li><BikeIcon />Grup sürüşleri, konserler, stantlar ve sahil keyfi</li>
             </ul>
 
           </div>
 
           <div className="mersin-modal-reel" aria-label="Mersin Motofest videosu">
             <p className="mersin-modal-reel-label">Sitede İzle</p>
-            <iframe
-              src={REEL_EMBED_URL}
-              title="Mersin Motofest 2026 videosu"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              loading="lazy"
-            />
+            <div className="reel-clickwrap">
+              <iframe
+                src={REEL_EMBED_URL}
+                title="Mersin Motofest 2026 videosu"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                loading="lazy"
+              />
+            </div>
           </div>
+
         </div>
       </div>
     </div>,
@@ -187,46 +174,28 @@ function MersinMotoFestSection() {
               <h2>Mersin Motor Kulübü&#8217;nün 20. yılında büyük festival</h2>
 
               <p className="mersin-mf-desc">
-                1&ndash;3 Mayıs 2026&#8217;da Erdemli / Tırtar Kamp Alanı&#8217;nda
-                düzenlenecek Mersin Motofest&#8217;te QRAKTER ile tanışın. Uygulamayı indirin
-                veya web üzerinden kayıt olun; festival alanında sizi bekliyoruz.
+                1&ndash;3 Mayıs&#8217;ta Erdemli&#8217;de QRAKTER ile buluşun. Uygulamayı indirin veya
+                web üzerinden kayıt olun; standımızda sizi bekliyoruz.
               </p>
 
               <div className="mersin-mf-chips" role="list" aria-label="Festival detayları">
                 <span className="mersin-mf-chip" role="listitem"><CalendarIcon />1-3 Mayıs 2026</span>
                 <span className="mersin-mf-chip" role="listitem"><PinIcon />Erdemli / Tırtar, Mersin</span>
+                <span className="mersin-mf-chip" role="listitem"><BikeIcon />Grup sürüşleri · konserler · sahil keyfi</span>
               </div>
 
-              <div className="mersin-mf-steps" aria-label="Kayıt adımları">
-                <div className="mersin-mf-step">
-                  <span className="mersin-mf-step-num" aria-hidden="true">1</span>
-                  <div className="mersin-mf-step-body">
-                    <strong>İndir veya Web&#8217;e Eriş</strong>
-                    <p>Android, iOS veya web üzerinden QRAKTER&#8217;e kayıt ol.</p>
-                  </div>
-                </div>
-
-                <div className="mersin-mf-step">
-                  <span className="mersin-mf-step-num" aria-hidden="true">2</span>
-                  <div className="mersin-mf-step-body">
-                    <strong>Profilini Oluştur</strong>
-                    <p>Sağlık ve araç bilgilerini bir kez gir, her yerde hazır olsun.</p>
-                  </div>
-                </div>
-
-                <div className="mersin-mf-step">
-                  <span className="mersin-mf-step-num" aria-hidden="true">3</span>
-                  <div className="mersin-mf-step-body">
-                    <strong>Festivale Katıl</strong>
-                    <p>Tırtar Kamp Alanı&#8217;nda QRAKTER standını ziyaret et, ekiple tanış ve deneyimi yerinde keşfet.</p>
-                  </div>
+              <div className="motofest-prize-card" aria-label="Hediye detayı">
+                <img src={hediyeGorseli} alt="Hediye ürünü KNMaster KN1600CPRO interkom seti" />
+                <div>
+                  <strong>KNMaster KN1600CPRO</strong>
+                  <p>2K kameralı motosiklet interkom seti — 4 kişiye hediye!</p>
                 </div>
               </div>
 
-              <ul className="mersin-mf-info-list" aria-label="Festival bilgileri">
-                <li><CalendarIcon />1 Mayıs Cuma (Resmi Tatil) · 2 Mayıs Cumartesi · 3 Mayıs Pazar</li>
-                <li><PinIcon />Tırtar Kamp Alanı, Erdemli / Mersin</li>
-                <li><BikeIcon />Grup sürüşleri, konserler, stantlar ve sahil keyfi</li>
+              <ul className="motofest-note-list" aria-label="Hediye koşulları">
+                <li>Uygulamayı indirip kayıt olan ve Instagram katılım şartlarını sağlayan kullanıcılar arasından 4 kişi seçilecektir.</li>
+                <li>Katılım için Mersin Motofest Instagram hesabını takip etmek ve son gönderiyi beğenmek gereklidir.</li>
+                <li>Hediye, katılım şartlarını sağlayan kullanıcılar arasından belirlenecektir.</li>
               </ul>
 
               <div className="mersin-mf-actions">
@@ -246,13 +215,15 @@ function MersinMotoFestSection() {
 
             <article className="mersin-mf-reel-card reveal" aria-label="Mersin Motofest videosu">
               <p className="mersin-mf-reel-label">Sitede İzle</p>
-              <iframe
-                id="mersin-mf-video-main"
-                src={REEL_EMBED_URL}
-                title="Mersin Motofest 2026 videosu"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                loading="lazy"
-              />
+              <div className="reel-clickwrap">
+                <iframe
+                  id="mersin-mf-video-main"
+                  src={REEL_EMBED_URL}
+                  title="Mersin Motofest 2026 videosu"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  loading="lazy"
+                />
+              </div>
             </article>
           </div>
         </div>

@@ -35,12 +35,12 @@ function MotoFestSection() {
               <img src={hediyeGorseli} alt="Hediye ürünü KNMaster KN1600CPRO interkom seti" />
               <div>
                 <strong>KNMaster KN1600CPRO</strong>
-                <p>2K kameralı motosiklet interkom seti - 10 kişiye hediye!</p>
+                <p>2K kameralı motosiklet interkom seti - 4 kişiye hediye!</p>
               </div>
             </div>
 
             <ul className="motofest-note-list" aria-label="Hediye koşulları">
-              <li>Uygulamayı indirip kayıt olan ve Instagram katılım şartlarını sağlayan kullanıcılar arasından 10 kişi seçilecektir.</li>
+              <li>Uygulamayı indirip kayıt olan ve Instagram katılım şartlarını sağlayan kullanıcılar arasından 4 kişi seçilecektir.</li>
               <li>Katılım için Zayfix Instagram hesabını takip etmek ve son gönderiyi beğenmek gereklidir.</li>
               <li>Hediye, katılım şartlarını sağlayan kullanıcılar arasından belirlenecektir.</li>
               <li>22 - 25 Nisan 2026 • İstanbul Fuar Merkezi • 10:00 - 19:00</li>
@@ -79,12 +79,14 @@ function MotoFestSection() {
 
           <article className="motofest-reel-card reveal" aria-label="Motobike İstanbul reels videosu">
             <p className="motofest-reel-label">INSTAGRAM</p>
-            <iframe
-              src="https://www.instagram.com/reel/DWde-neDBrc/embed"
-              title="Motobike İstanbul Instagram Reels"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              loading="lazy"
-            />
+            <div className="reel-clickwrap">
+              <iframe
+                src="https://www.instagram.com/reel/DWde-neDBrc/embed"
+                title="Motobike İstanbul Instagram Reels"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                loading="lazy"
+              />
+            </div>
           </article>
         </div>
       </div>
