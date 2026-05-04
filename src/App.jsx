@@ -3,7 +3,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
-import MersinMotoFestSection from './components/MersinMotoFestSection'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
@@ -20,7 +19,6 @@ function LandingPage() {
   return (
     <>
       <Hero />
-      <MersinMotoFestSection />
       <HowItWorks />
       <Features />
       <ContactForm />
