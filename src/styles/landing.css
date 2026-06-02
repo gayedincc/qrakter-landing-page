@@ -2005,7 +2005,7 @@ input:focus-visible {
 }
 
 .btn-instagram {
-  background: linear-gradient(135deg, #47dbff 0%, #0099ff 100%) !important;
+  background: linear-gradient(135deg, #ff5d4f 0%, #d62323 100%) !important;
   color: #ffffff !important;
   border: none !important;
   font-weight: 600;
@@ -2014,7 +2014,7 @@ input:focus-visible {
 
 .btn-instagram:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(71, 219, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(214, 35, 35, 0.42);
 }
 
 .event-modal-prize-card {
@@ -2122,72 +2122,138 @@ input:focus-visible {
 }
 
 .motofest-section {
+  position: relative;
+  overflow: hidden;
   background:
-    radial-gradient(circle at right top, rgba(94, 222, 255, 0.2), transparent 52%),
-    linear-gradient(180deg, #eaf6ff 0%, #deefff 100%);
+    radial-gradient(circle at 16% 14%, rgba(226, 35, 26, 0.14), transparent 34%),
+    radial-gradient(circle at 85% 12%, rgba(20, 20, 20, 0.08), transparent 30%),
+    linear-gradient(180deg, #f8f8f9 0%, #f3f3f4 52%, #ececef 100%);
 }
 
 .motofest-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 1.1rem;
   align-items: stretch;
 }
 
 .motofest-copy-card,
-.motofest-reel-card {
-  border-radius: 1.35rem;
-  border: 1px solid rgba(135, 219, 255, 0.42);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 16px 40px rgba(13, 70, 123, 0.14);
+.motofest-poster-card,
+.motofest-modal,
+.motofest-modal-embed-shell {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(20, 20, 20, 0.1);
+  box-shadow: 0 14px 34px rgba(17, 17, 19, 0.14);
 }
 
 .motofest-copy-card {
-  padding: clamp(0.9rem, 3vw, 1.2rem);
+  position: relative;
+  padding: clamp(1rem, 3vw, 1.35rem);
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
+  background: #ffffff;
 }
 
 .motofest-copy-card h2 {
-  font-size: clamp(2rem, 1vw + 1.2rem, 2.75rem);
-  line-height: 1.05;
-  color: #0f4779;
+  font-size: clamp(1.95rem, 1.1vw + 1.15rem, 2.85rem);
+  line-height: 1.06;
+  color: #121216;
 }
 
 .motofest-copy-card p {
-  color: #19507b;
-  line-height: 1.7;
+  color: #3a3a42;
+  line-height: 1.65;
+}
+
+.motofest-kicker-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.motofest-eyebrow {
+  margin-bottom: 0;
+  color: #b6251c;
+}
+
+.motofest-live-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(226, 35, 26, 0.08);
+  border: 1px solid rgba(226, 35, 26, 0.26);
+  color: #aa2a20;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.motofest-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.motofest-highlight-box {
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  background: #fcfcfd;
+  border: 1px solid rgba(24, 24, 26, 0.12);
+}
+
+.motofest-highlight-box span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #8a8a95;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.motofest-highlight-box strong {
+  color: #1a1a21;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.35;
 }
 
 .motofest-prize-card {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 136px 1fr;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.75rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(141, 223, 255, 0.45);
-  background: #f1f9ff;
+  gap: 0.9rem;
+  padding: 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid #d5d8df;
+  background: #f0f3f8;
 }
 
 .motofest-prize-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 0.85rem;
+  width: 136px;
+  height: 136px;
+  border-radius: 0.75rem;
   object-fit: cover;
-  border: 1px solid rgba(138, 219, 255, 0.45);
+  border: 1px solid #c6cad2;
 }
 
 .motofest-prize-card strong {
   display: block;
-  color: #0d477a;
-  font-size: 1.16rem;
+  color: #163b5a;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  line-height: 1.14;
+  font-weight: 750;
 }
 
 .motofest-prize-card p {
-  margin-top: 0.2rem;
-  color: #11669d;
-  font-weight: 600;
+  margin-top: 0.3rem;
+  color: #2b5675;
+  font-size: clamp(0.92rem, 1.4vw, 1.08rem);
+  font-weight: 650;
+  line-height: 1.28;
 }
 
 .motofest-note-list {
@@ -2201,7 +2267,7 @@ input:focus-visible {
 .motofest-note-list li {
   position: relative;
   padding-left: 1.15rem;
-  color: #1a517f;
+  color: #393b44;
   line-height: 1.58;
 }
 
@@ -2213,37 +2279,347 @@ input:focus-visible {
   width: 0.46rem;
   height: 0.46rem;
   border-radius: 999px;
-  background: #2db6ec;
+  background: linear-gradient(135deg, #e2231a, #851914);
 }
 
 .motofest-actions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.65rem;
 }
 
-.motofest-reel-card {
+.motofest-poster-card {
   overflow: hidden;
-  padding: 0.9rem;
+  padding: 0.95rem;
   display: grid;
   gap: 0.75rem;
-  background:
-    radial-gradient(circle at top right, rgba(135, 231, 255, 0.24), transparent 46%),
-    #f8fcff;
+  background: #ffffff;
+}
+
+.motofest-poster-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
 }
 
 .motofest-reel-label {
-  color: #0b4a7f;
-  font-size: 0.9rem;
+  color: #a0261d;
+  font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
 }
 
-.motofest-reel-card iframe {
+.motofest-link-button {
+  border: 0;
+  background: transparent;
+  color: #ff7669;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.motofest-poster-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(187, 215, 199, 0.95);
+  background: #ffffff;
+}
+
+.motofest-poster-frame iframe {
   width: 100%;
-  min-height: clamp(280px, 60vw, 560px);
-  height: clamp(280px, 60vw, 560px);
+  min-height: clamp(420px, 62vw, 720px);
+  height: clamp(420px, 62vw, 720px);
+  border: 0;
+}
+
+.motofest-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(4, 4, 8, 0.72);
+  backdrop-filter: blur(10px);
+  animation: modal-fade-in 0.3s ease;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.motofest-modal {
+  position: relative;
+  width: min(1120px, 100vw - 2rem);
+  max-width: 100%;
+  max-height: min(91vh, 820px);
+  margin: auto;
+  background:
+    radial-gradient(circle at top right, rgba(226, 35, 26, 0.12), transparent 34%),
+    linear-gradient(162deg, #fcfcfd 0%, #f7f7f9 54%, #f1f1f4 100%);
+  color: #202028;
+  overflow: auto;
+  animation: modal-rise 0.38s ease;
+}
+
+.motofest-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(20, 20, 20, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: transparent;
+  font: inherit;
+  font-size: 0;
+  line-height: 1;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+
+.motofest-modal-close::before {
+  content: '×';
+  position: absolute;
+  inset: 0;
+  color: #2c2c34;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.motofest-modal-close:hover {
+  transform: translateY(-1px);
+  background: rgba(226, 35, 26, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+}
+
+.motofest-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 0.8rem;
+  padding: 4rem 1rem 1rem;
+}
+
+.motofest-modal-content {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.motofest-modal-intro {
+  margin: 0;
+  color: #3a3a42;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.55;
+}
+
+.motofest-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.motofest-modal-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0.2rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 35, 26, 0.24);
+  background: rgba(226, 35, 26, 0.08);
+  color: #a62b21;
+  font-size: clamp(0.66rem, 1.1vw, 0.74rem);
+  font-weight: 700;
+}
+
+.motofest-modal-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-self: flex-start;
+  min-height: 26px;
+  padding: 0.26rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 35, 26, 0.34);
+  background: rgba(226, 35, 26, 0.12);
+  color: #a62b21;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.motofest-modal-content h2 {
+  font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  line-height: 1.08;
+  margin-top: 0.05rem;
+}
+
+.motofest-modal-description {
+  color: #2e6986;
+  line-height: 1.6;
+}
+
+.motofest-modal-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.motofest-modal-detail {
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.85rem;
+  background: #ffffff;
+  border: 1px solid rgba(24, 24, 26, 0.14);
+}
+
+.motofest-modal-detail span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #8b8b96;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.motofest-modal-detail strong {
+  color: #1d1d25;
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  line-height: 1.35;
+}
+
+.motofest-modal-prize-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.7rem;
+  border-radius: 0.85rem;
+  background: #f0f3f8;
+  border: 1px solid #d5d8df;
+}
+
+.motofest-modal-prize-card img {
+  width: 92px;
+  height: 92px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  border: 1px solid #c6cad2;
+}
+
+.motofest-modal-prize-card strong {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-size: clamp(0.96rem, 1.4vw, 1.16rem);
+  line-height: 1.15;
+  color: #163b5a;
+}
+
+.motofest-modal-prize-card p {
+  color: #2b5675;
+  line-height: 1.24;
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  font-weight: 650;
+}
+
+.motofest-modal-note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.motofest-modal-note-list li {
+  position: relative;
+  padding-left: 0.95rem;
+  color: #3a3a42;
+  font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+  line-height: 1.45;
+}
+
+.motofest-modal-note-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e2231a, #851914);
+}
+
+.motofest-modal-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.motofest-actions .btn,
+.motofest-modal-actions .btn {
+  min-height: 38px;
+  padding: 0.55rem 0.78rem;
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  border-radius: 0.72rem;
+}
+
+.motofest-actions .btn-primary,
+.motofest-modal-actions .btn-primary {
+  background: linear-gradient(135deg, #e2231a 0%, #b41814 100%);
+  box-shadow: 0 8px 20px rgba(178, 24, 20, 0.28);
+}
+
+.motofest-actions .btn-primary:hover,
+.motofest-modal-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #f0332a 0%, #c31f1a 100%);
+}
+
+.motofest-actions .btn-secondary,
+.motofest-modal-actions .btn-secondary {
+  background: #ffffff;
+  color: #1b1b24;
+  border-color: rgba(20, 20, 20, 0.24);
+}
+
+.motofest-actions .btn-secondary:hover,
+.motofest-modal-actions .btn-secondary:hover {
+  background: #f7f7f8;
+}
+
+.motofest-actions .btn-instagram,
+.motofest-modal-actions .btn-instagram {
+  background: linear-gradient(135deg, #1f1f26 0%, #0e0e13 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.motofest-actions .btn-instagram:hover,
+.motofest-modal-actions .btn-instagram:hover {
+  box-shadow: 0 8px 20px rgba(16, 16, 20, 0.3);
+}
+
+.motofest-modal-media {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.motofest-modal-embed-shell {
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.82);
+  align-self: start;
+}
+
+.motofest-modal-embed-shell iframe {
+  width: 100%;
+  height: clamp(560px, 72vh, 700px);
   border: 0;
   border-radius: 1rem;
 }
@@ -2639,9 +3015,18 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .motofest-reel-card iframe {
-    min-height: 340px;
-    height: 340px;
+  .motofest-poster-frame iframe {
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .motofest-modal-layout {
+    grid-template-columns: 1fr;
+    padding: 4.1rem 0.9rem 0.9rem;
+  }
+
+  .motofest-modal-embed-shell iframe {
+    height: 620px;
   }
 }
 
@@ -2893,18 +3278,22 @@ input:focus-visible {
     height: 450px;
   }
 
+  .motofest-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
   .motofest-prize-card {
-    grid-template-columns: 92px 1fr;
+    grid-template-columns: 100px 1fr;
   }
 
   .motofest-prize-card img {
-    width: 92px;
-    height: 92px;
+    width: 100px;
+    height: 100px;
   }
 
-  .motofest-reel-card iframe {
-    min-height: 300px;
-    height: 300px;
+  .motofest-poster-frame iframe {
+    min-height: 420px;
+    height: 420px;
   }
 
   .motofest-actions {
@@ -2917,6 +3306,52 @@ input:focus-visible {
 
   .motofest-copy-card {
     padding: 0.9rem;
+  }
+
+  .motofest-modal-close {
+    width: 32px;
+    height: 32px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .motofest-modal-close::before {
+    font-size: 1.3rem;
+  }
+
+  .motofest-modal-layout {
+    grid-template-columns: 1fr;
+    padding: 3.6rem 0.8rem 0.8rem;
+  }
+
+  .motofest-modal-tags {
+    gap: 0.35rem;
+  }
+
+  .motofest-modal-tag {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .motofest-modal-details {
+    grid-template-columns: 1fr;
+  }
+
+  .motofest-modal-prize-card {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .motofest-modal-prize-card img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .motofest-modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .motofest-modal-embed-shell iframe {
+    height: 520px;
   }
 
   .winner-modal-actions .btn {

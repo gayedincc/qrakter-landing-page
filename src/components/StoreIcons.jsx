@@ -31,3 +31,13 @@ export function AppleIcon({ className = '' }) {
     </IconBase>
   )
 }
+
+export function InstagramIcon({ className = '' }) {
+  return (
+    <IconBase className={className} viewBox="0 0 24 24">
+      <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9Z" />
+      <path d="M12 7.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 1.8A3 3 0 1 0 15 12a3 3 0 0 0-3-3Z" />
+      <circle cx="17.35" cy="6.65" r="1.1" />
+    </IconBase>
+  )
+}
