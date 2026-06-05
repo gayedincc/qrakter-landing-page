@@ -64,7 +64,7 @@ function MotoFestSection() {
                 </div>
                 <div className="motofest-highlight-box">
                   <span>Konum</span>
-                  <strong>Silivri Motosiklet Kulübü Alanı</strong>
+                  <strong>Silivri Motosiklet Panayırı</strong>
                 </div>
               </div>
 
@@ -72,7 +72,7 @@ function MotoFestSection() {
                 <img src={hediyeGorseli} alt="2K Sony kameralı KNMaster interkom seti hediye görseli" />
                 <div>
                   <strong>KNMaster KN1600CPRO</strong>
-                  <p>2K kameralı motosiklet interkom seti - 5 kişiye hediye!</p>
+                  <p>2K kameralı motosiklet interkom seti - 2 kişiye hediye!</p>
                 </div>
               </div>
 
@@ -101,7 +101,7 @@ function MotoFestSection() {
 
             <article className="motofest-poster-card reveal" aria-label="Silivri Motofest Instagram postu">
               <div className="motofest-poster-head">
-                <p className="motofest-reel-label">Silivri Motofest Postu</p>
+                <p className="motofest-reel-label">Instagram</p>
               </div>
 
               <div className="motofest-poster-frame">
@@ -147,7 +147,7 @@ function MotoFestSection() {
 
                 <div className="motofest-modal-tags" aria-label="Etkinlik etiketleri">
                   <span className="motofest-modal-tag">4-5-6-7 Haziran</span>
-                  <span className="motofest-modal-tag">Silivri Motosiklet Kulübü Alanı</span>
+                  <span className="motofest-modal-tag">Silivri Motosiklet Panayırı</span>
                   <span className="motofest-modal-tag">İndirimler • Sürpriz çekilişler</span>
                 </div>
 
@@ -164,7 +164,7 @@ function MotoFestSection() {
                   <img src={hediyeGorseli} alt="Kameralı interkom seti hediye görseli" />
                   <div>
                     <strong>KNMaster KN1600CPRO</strong>
-                    <p>2K kameralı motosiklet interkom seti - 5 kişiye hediye!</p>
+                    <p>2K kameralı motosiklet interkom seti - 2 kişiye hediye!</p>
                   </div>
                 </div>
 
