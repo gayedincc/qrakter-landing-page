@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap');
 
 :root {
-  --font-default: 'Outfit', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-default: 'Outfit', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Poppins', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --fontawesome: 'Font Awesome 5 Pro';
 
   --black: #0f3d2b;
@@ -65,6 +65,23 @@ body {
 
 a {
   color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-default);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.eyebrow {
+  font-family: var(--font-heading);
 }
 
 h1,
@@ -1151,7 +1168,7 @@ input:focus-visible {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr);
   gap: 1.35rem;
-  align-items: center;
+  align-items: start;
 }
 
 .lock-copy h1,
@@ -2789,10 +2806,813 @@ input:focus-visible {
   border-color: rgba(102, 187, 106, 0.5);
 }
 
-.floating-store-icon {
-  width: 1.05rem;
-  height: 1.05rem;
-  flex-shrink: 0;
+/* -------------------------------------------------------
+   QRakter Çekiliş Sayfaları - Final Override
+------------------------------------------------------- */
+
+:root {
+  --qr-font-body: var(--font-default);
+  --qr-font-heading: var(--font-heading);
+
+  --qr-green: #2e9e68;
+  --qr-green-mid: #66bb6a;
+  --qr-green-light: #a1d95c;
+  --qr-green-dark: #1f6b4b;
+  --qr-green-deep: #103f2d;
+
+  --qr-bg-soft: #eff6ec;
+  --qr-bg-light: #f9fcf5;
+
+  --qr-text: #144d35;
+  --qr-muted: rgba(20, 77, 53, 0.76);
+
+  --qr-border: rgba(46, 158, 104, 0.18);
+  --qr-border-strong: rgba(46, 158, 104, 0.42);
+
+  --qr-gradient-btn: linear-gradient(90deg, #a1d95c 0%, #66bb6a 48%, #2e9e68 100%);
+  --qr-gradient-btn-hover: linear-gradient(90deg, #2e9e68 0%, #66bb6a 52%, #a1d95c 100%);
+
+  --qr-shadow-button: 0 4px 14px rgba(46, 158, 104, 0.28);
+  --qr-shadow-button-hover: 0 18px 38px rgba(46, 158, 104, 0.34);
+  --qr-shadow-card: 0 26px 64px rgba(31, 107, 75, 0.12);
+  --qr-shadow-card-hover: 0 38px 84px rgba(31, 107, 75, 0.18);
+}
+
+/* Fontları çekiliş sayfalarında sabitle */
+.cekilis-landing-page,
+.cekilis-landing-page *,
+.haftalik-cekilis-page,
+.haftalik-cekilis-page *,
+.giveaway-page,
+.giveaway-page *,
+.cekilis-back-container,
+.cekilis-back-container * {
+  font-family: var(--qr-font-body) !important;
+}
+
+.cekilis-landing-page h1,
+.cekilis-landing-page h2,
+.haftalik-cekilis-page h1,
+.haftalik-cekilis-page h2,
+.giveaway-page h1,
+.giveaway-page h2,
+.cekilis-landing-page .eyebrow,
+.haftalik-cekilis-page .eyebrow,
+.giveaway-page .eyebrow,
+.lock-copy .eyebrow,
+.cekilis-option-badge,
+.haftalik-status-badge {
+  font-family: var(--qr-font-heading);
+}
+
+/* Tüm çekiliş eyebrow alanları aynı */
+.cekilis-landing-page .eyebrow,
+.haftalik-cekilis-page .eyebrow,
+.giveaway-page .eyebrow,
+.lock-copy .eyebrow,
+p.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  max-width: max-content;
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--qr-green);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: none;
+}
+
+/* Ortak buton animasyonu */
+@keyframes qrButtonShine {
+  0% {
+    transform: translateX(-160%) rotate(18deg);
+  }
+
+  100% {
+    transform: translateX(430%) rotate(18deg);
+  }
+}
+
+@keyframes qrSoftPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 14px rgba(46, 158, 104, 0.28);
+  }
+
+  50% {
+    box-shadow: 0 10px 24px rgba(46, 158, 104, 0.34);
+  }
+}
+
+/* Ortak QRakter buton görünümü */
+.cekilis-back-button,
+.cekilis-option-card .cekilis-option-cta,
+.giveaway-page .btn-primary,
+.giveaway-page button.btn-primary,
+.giveaway-page .btn.btn-primary,
+.haftalik-cekilis-page .btn-primary {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0.85rem 1.2rem;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 0.8rem;
+  background: var(--qr-gradient-btn);
+  color: #ffffff;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  word-break: normal;
+  cursor: pointer;
+  box-shadow: var(--qr-shadow-button);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease,
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease;
+}
+
+.cekilis-back-button::before,
+.cekilis-option-card .cekilis-option-cta::before,
+.giveaway-page .btn-primary::before,
+.giveaway-page button.btn-primary::before,
+.giveaway-page .btn.btn-primary::before,
+.haftalik-cekilis-page .btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.cekilis-back-button::after,
+.cekilis-option-card .cekilis-option-cta::after,
+.giveaway-page .btn-primary::after,
+.giveaway-page button.btn-primary::after,
+.giveaway-page .btn.btn-primary::after,
+.haftalik-cekilis-page .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -42%;
+  z-index: -1;
+  width: 38%;
+  height: 220%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.48),
+    transparent
+  );
+  transform: translateX(-160%) rotate(18deg);
+  pointer-events: none;
+}
+
+.cekilis-back-button:hover,
+.cekilis-option-card:hover .cekilis-option-cta,
+.giveaway-page .btn-primary:hover,
+.giveaway-page button.btn-primary:hover,
+.giveaway-page .btn.btn-primary:hover,
+.haftalik-cekilis-page .btn-primary:hover {
+  transform: translateY(-3px);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--qr-shadow-button-hover);
+}
+
+.cekilis-back-button:hover::before,
+.cekilis-option-card:hover .cekilis-option-cta::before,
+.giveaway-page .btn-primary:hover::before,
+.giveaway-page button.btn-primary:hover::before,
+.giveaway-page .btn.btn-primary:hover::before,
+.haftalik-cekilis-page .btn-primary:hover::before {
+  opacity: 1;
+}
+
+.cekilis-back-button:hover::after,
+.cekilis-option-card:hover .cekilis-option-cta::after,
+.giveaway-page .btn-primary:hover::after,
+.giveaway-page button.btn-primary:hover::after,
+.giveaway-page .btn.btn-primary:hover::after,
+.haftalik-cekilis-page .btn-primary:hover::after {
+  animation: qrButtonShine 0.7s ease forwards;
+}
+
+.cekilis-back-button:active,
+.cekilis-option-card:active .cekilis-option-cta,
+.giveaway-page .btn-primary:active,
+.giveaway-page button.btn-primary:active,
+.giveaway-page .btn.btn-primary:active,
+.haftalik-cekilis-page .btn-primary:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.cekilis-back-button:focus-visible,
+.cekilis-option-card:focus-visible .cekilis-option-cta,
+.giveaway-page .btn-primary:focus-visible,
+.giveaway-page button.btn-primary:focus-visible,
+.giveaway-page .btn.btn-primary:focus-visible,
+.haftalik-cekilis-page .btn-primary:focus-visible {
+  outline: 4px solid rgba(46, 158, 104, 0.22);
+  outline-offset: 4px;
+}
+
+/* Geri butonu yerleşimi */
+.cekilis-back-container {
+  padding-top: 24px;
+  padding-bottom: 0;
+}
+
+.cekilis-back-button {
+  min-height: 52px;
+  padding-inline: 26px;
+  border-radius: 999px;
+}
+
+.cekilis-back-button span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1;
+  transition: transform 0.24s ease;
+}
+
+.cekilis-back-button:hover span {
+  transform: translateX(-3px);
+}
+
+.cekilis-back-button.inline {
+  margin-bottom: 28px;
+}
+
+/* /cekilis ana seçim sayfası */
+.cekilis-landing-page {
+  position: relative;
+  min-height: calc(100vh - 88px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(161, 217, 92, 0.25), transparent 34%),
+    radial-gradient(circle at 88% 16%, rgba(46, 158, 104, 0.14), transparent 32%),
+    linear-gradient(180deg, #f9fcf5 0%, #eff6ec 100%);
+}
+
+.cekilis-landing-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 42%),
+    radial-gradient(circle at 54% 82%, rgba(255, 255, 255, 0.58), transparent 35%);
+}
+
+.cekilis-landing-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(390px, 0.75fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 92px);
+  min-height: calc(100vh - 88px);
+  padding-bottom: clamp(54px, 7vw, 92px);
+}
+
+.cekilis-landing-hero h1,
+.haftalik-cekilis-content h1,
+.giveaway-page .lock-copy h1 {
+  max-width: 780px;
+  margin: 0 0 22px;
+  color: var(--qr-green-dark);
+  font-size: clamp(42px, 5.2vw, 76px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.cekilis-landing-hero .section-copy,
+.haftalik-cekilis-content .section-copy,
+.giveaway-page .lock-copy .section-copy {
+  max-width: 780px;
+  margin: 0;
+  color: rgba(31, 107, 75, 0.9);
+  font-size: clamp(17px, 1.38vw, 22px);
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: -0.015em;
+}
+
+.cekilis-landing-mascot {
+  width: min(420px, 76vw);
+  margin-top: clamp(24px, 4vw, 36px);
+  margin-left: clamp(0px, 4vw, 72px);
+  pointer-events: none;
+}
+
+.cekilis-landing-mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 28px 44px rgba(31, 107, 75, 0.16));
+}
+
+.cekilis-landing-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 720px;
+  margin: 26px 0 0;
+  color: var(--qr-green-dark);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.cekilis-landing-note::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #a1d95c 0%, #2e9e68 100%);
+  box-shadow: 0 0 0 6px rgba(46, 158, 104, 0.1);
+}
+
+/* Seçim kartları */
+.cekilis-options-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+button.cekilis-option-card {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+.cekilis-option-card {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 282px;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid var(--qr-border);
+  border-radius: 32px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(244, 250, 239, 0.92));
+  color: var(--qr-text);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--qr-shadow-card);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.cekilis-option-card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -2;
+  border-radius: 31px;
+  background:
+    radial-gradient(circle at 92% 2%, rgba(46, 158, 104, 0.13), transparent 26%),
+    radial-gradient(circle at 5% 105%, rgba(161, 217, 92, 0.16), transparent 32%);
+}
+
+.cekilis-option-card::after {
+  content: '';
+  position: absolute;
+  right: -58px;
+  top: -58px;
+  z-index: -1;
+  width: 166px;
+  height: 166px;
+  border-radius: 999px;
+  background: rgba(46, 158, 104, 0.08);
+  transition:
+    transform 0.28s ease,
+    background 0.28s ease;
+}
+
+.cekilis-option-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--qr-border-strong) !important;
+  background:
+    linear-gradient(145deg, #ffffff, rgba(239, 246, 236, 0.96)) !important;
+  box-shadow: var(--qr-shadow-card-hover);
+}
+
+.cekilis-option-card:hover::after {
+  transform: scale(1.12);
+  background: rgba(46, 158, 104, 0.13);
+}
+
+.cekilis-option-card:active {
+  transform: translateY(-2px) scale(0.992);
+}
+
+.cekilis-option-card:focus-visible {
+  outline: 4px solid rgba(46, 158, 104, 0.22);
+  outline-offset: 4px;
+}
+
+/* Kart ikonları */
+.cekilis-option-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(46, 158, 104, 0.18);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 236, 0.94));
+  color: var(--qr-green);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+    0 12px 28px rgba(31, 107, 75, 0.1);
+  transition:
+    transform 0.24s ease,
+    color 0.24s ease,
+    background 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.cekilis-option-card:hover .cekilis-option-icon {
+  transform: translateY(-2px) rotate(-2deg);
+  color: #ffffff;
+  background: linear-gradient(135deg, #a1d95c 0%, #66bb6a 52%, #2e9e68 100%);
+  box-shadow: 0 18px 34px rgba(46, 158, 104, 0.24);
+}
+
+.cekilis-option-icon svg {
+  width: 25px;
+  height: 25px;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Kart metinleri */
+.cekilis-option-badge {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--qr-green);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cekilis-option-card h2 {
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+  margin: 0 0 14px;
+  color: var(--qr-green-deep);
+  font-size: clamp(26px, 2.15vw, 34px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.cekilis-option-card p {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  margin: 0 0 28px;
+  color: var(--qr-muted);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+/* Kart CTA */
+.cekilis-option-card .cekilis-option-cta {
+  min-height: 46px;
+  padding-inline: 1.2rem !important;
+  border-radius: 0.8rem !important;
+  animation: qrSoftPulse 2.8s ease-in-out infinite;
+}
+
+.cekilis-option-card:hover .cekilis-option-cta {
+  animation: none;
+}
+
+.cekilis-option-card .cekilis-option-cta span {
+  position: relative;
+  z-index: 1;
+  color: #ffffff !important;
+  font-size: 17px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+/* Haftalık uygulama sayfası - Fuar/Festival layout uyumlu */
+.haftalik-uygulama-page .lock-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.haftalik-uygulama-page .lock-panel {
+  position: relative;
+  overflow: visible;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(28px, 3vw, 42px);
+}
+
+/* Sol taraftaki hazırlık kartı */
+.haftalik-uygulama-page .haftalik-status-card {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin-top: 34px;
+  padding: 28px;
+  border: 1px solid var(--qr-border);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 239, 0.9));
+  box-shadow: 0 22px 54px rgba(31, 107, 75, 0.1);
+}
+
+.haftalik-uygulama-page .haftalik-status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  margin-bottom: 16px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: rgba(46, 158, 104, 0.1);
+  color: var(--qr-green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.haftalik-uygulama-page .haftalik-status-card h2 {
+  margin: 0 0 12px;
+  color: var(--qr-green-deep);
+  font-size: clamp(24px, 2vw, 34px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.haftalik-uygulama-page .haftalik-status-card p {
+  margin: 0;
+  color: var(--qr-muted);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.haftalik-uygulama-page .haftalik-feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.haftalik-uygulama-page .haftalik-feature-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(46, 158, 104, 0.14);
+  border-radius: 999px;
+  background: #eff6ec;
+  color: var(--qr-green-dark);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Sağ taraftaki maskot alanı */
+.haftalik-uygulama-page .haftalik-cekilis-visual {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: -18px;
+}
+
+.haftalik-uygulama-page .haftalik-cekilis-visual img {
+  width: min(390px, 78vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 28px 44px rgba(31, 107, 75, 0.16));
+}
+
+.haftalik-uygulama-page .haftalik-visual-card {
+  position: absolute;
+  right: clamp(8px, 2vw, 22px);
+  bottom: 8%;
+  width: min(260px, 72vw);
+  padding: 20px;
+  border: 1px solid var(--qr-border);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 44px rgba(31, 107, 75, 0.14);
+  backdrop-filter: blur(12px);
+}
+
+.haftalik-uygulama-page .haftalik-visual-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--qr-green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.haftalik-uygulama-page .haftalik-visual-card strong {
+  display: block;
+  color: var(--qr-green-deep);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 760px) {
+  .haftalik-uygulama-page .lock-panel {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .haftalik-uygulama-page .haftalik-status-card {
+    margin-top: 26px;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .haftalik-uygulama-page .haftalik-cekilis-visual {
+    min-height: auto;
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .haftalik-uygulama-page .haftalik-cekilis-visual img {
+    width: min(280px, 76vw);
+  }
+
+  .haftalik-uygulama-page .haftalik-visual-card {
+    position: static;
+    margin-top: -18px;
+  }
+}
+
+/* Fuar/festival formundaki full-width buton */
+.giveaway-page .btn-primary.full-width,
+.giveaway-page button.btn-primary.full-width,
+.giveaway-page .btn.btn-primary.full-width {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 0.8rem !important;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .cekilis-landing-shell,
+  .haftalik-cekilis-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .cekilis-options-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cekilis-landing-mascot {
+    width: min(320px, 70vw);
+    margin-left: 0;
+  }
+
+  .haftalik-cekilis-visual {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .cekilis-back-container {
+    padding-top: 18px;
+  }
+
+  .cekilis-landing-shell,
+  .haftalik-cekilis-shell {
+    padding-bottom: 48px;
+  }
+
+  .cekilis-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cekilis-option-card {
+    min-height: auto;
+    padding: 24px;
+    border-radius: 26px;
+  }
+
+  .cekilis-option-card .cekilis-option-cta {
+    width: 100%;
+  }
+
+  .cekilis-landing-mascot {
+    width: min(260px, 72vw);
+  }
+
+  .cekilis-landing-note {
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .haftalik-status-card {
+    padding: 24px;
+    border-radius: 26px;
+  }
+
+  .haftalik-visual-card {
+    position: static;
+    margin-top: -20px;
+  }
+
+  .haftalik-cekilis-visual {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .cekilis-landing-hero h1,
+  .haftalik-cekilis-content h1,
+  .giveaway-page .lock-copy h1 {
+    font-size: 38px !important;
+  }
+
+  .cekilis-landing-hero .section-copy,
+  .haftalik-cekilis-content .section-copy,
+  .giveaway-page .lock-copy .section-copy {
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+
+  .cekilis-option-card h2 {
+    font-size: 25px;
+  }
+
+  .cekilis-option-card p,
+  .haftalik-status-card p {
+    font-size: 15px;
+  }
+
+  .cekilis-back-button {
+    width: 100%;
+    min-height: 50px;
+  }
 }
 
 @keyframes rise-in {
