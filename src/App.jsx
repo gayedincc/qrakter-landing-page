@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import GiveawayPage from './pages/GiveawayPage'
 import CekilisLandingPage from './pages/CekilisLandingPage'
-import HaftalikUygulamaCekilisPage from './pages/HaftalikUygulamaCekilisPage'
+import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
 import './styles/landing.css'
 
 function normalizePath(pathname) {
@@ -118,7 +118,7 @@ function App() {
       return (
         <>
           <CekilisBackButton onClick={goToCekilisLanding} />
-          <HaftalikUygulamaCekilisPage />
+          <HaftalikUygulamaPage />
         </>
       )
     }
