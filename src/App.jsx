@@ -8,6 +8,12 @@ import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import GiveawayPage from './pages/GiveawayPage'
 import CekilisLandingPage from './pages/CekilisLandingPage'
+import HaftalikUygulamaCampaignDetailPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaCampaignDetailPage'
+import HaftalikUygulamaCampaignEditPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaCampaignEditPage'
+import HaftalikUygulamaCampaignsPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaCampaignsPage'
+import HaftalikUygulamaDashboardPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaDashboardPage'
+import HaftalikUygulamaSettingsPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaSettingsPage'
+import HaftalikUygulamaWinnersPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaWinnersPage'
 import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import { getAdminAccessToken, getStoredAdminUser, isAdminUser } from './utils/adminAuth'
@@ -132,6 +138,9 @@ function App() {
   const showPublicChrome = !isPanelRoute && !isPublicCekilisRoute(pathname)
 
   const renderCurrentPage = () => {
+    const campaignEditMatch = pathname.match(/^\/panel\/cekilis\/haftalik-uygulama\/cekilisler\/([^/]+)\/duzenle$/)
+    const campaignDetailMatch = pathname.match(/^\/panel\/cekilis\/haftalik-uygulama\/cekilisler\/([^/]+)$/)
+
     const renderPanelLogin = () => (
       <AdminLoginPage onLoginSuccess={() => navigateToPath('/panel/cekilis', setPathname)} />
     )
@@ -153,7 +162,44 @@ function App() {
     }
 
     if (pathname === '/panel/cekilis/haftalik-uygulama') {
-      return <HaftalikUygulamaPage />
+      return <HaftalikUygulamaDashboardPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (pathname === '/panel/cekilis/haftalik-uygulama/sonuclandir') {
+      return <HaftalikUygulamaPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (pathname === '/panel/cekilis/haftalik-uygulama/ayarlar') {
+      return <HaftalikUygulamaSettingsPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (campaignEditMatch) {
+      return (
+        <HaftalikUygulamaCampaignEditPage
+          campaignId={decodeURIComponent(campaignEditMatch[1])}
+          onNavigate={(path) => navigateToPath(path, setPathname)}
+        />
+      )
+    }
+
+    if (campaignDetailMatch) {
+      return (
+        <HaftalikUygulamaCampaignDetailPage
+          campaignId={decodeURIComponent(campaignDetailMatch[1])}
+          onNavigate={(path) => navigateToPath(path, setPathname)}
+        />
+      )
+    }
+
+    if (pathname === '/panel/cekilis/haftalik-uygulama/cekilisler') {
+      return <HaftalikUygulamaCampaignsPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (
+      pathname === '/panel/cekilis/haftalik-uygulama/kazananlar' ||
+      pathname === '/panel/cekilis/haftalik-uygulama/son-kazananlar'
+    ) {
+      return <HaftalikUygulamaWinnersPage onNavigate={(path) => navigateToPath(path, setPathname)} />
     }
 
     if (pathname === '/panel/cekilis/fuar') {

@@ -28,6 +28,12 @@ function assertCampaignId(campaignId) {
   }
 }
 
+function assertResourceId(id, label) {
+  if (id === null || id === undefined || `${id}`.trim() === "") {
+    throw new Error(`${label} ID zorunludur.`);
+  }
+}
+
 function getErrorMessage(data) {
   return (
     data?.detail ||
@@ -88,6 +94,21 @@ async function requestGiveaway(path, options = {}) {
 
 export function listGiveawayCampaigns() {
   return requestGiveaway("campaigns/");
+}
+
+export function getGiveawayCampaign(id) {
+  assertResourceId(id, "Kampanya");
+
+  return requestGiveaway(`campaigns/${id}/`);
+}
+
+export function updateGiveawayCampaign(id, payload) {
+  assertResourceId(id, "Kampanya");
+
+  return requestGiveaway(`campaigns/${id}/`, {
+    method: "PATCH",
+    body: payload,
+  });
 }
 
 export function startGiveawayCampaignFromDefaults(payload = {}) {
@@ -156,4 +177,135 @@ export function listGiveawayWinners(campaignId) {
   assertCampaignId(campaignId);
 
   return requestGiveaway(`campaigns/${campaignId}/winners/`);
+}
+
+export function listCampaignPrizes(campaignId) {
+  assertCampaignId(campaignId);
+
+  return requestGiveaway(`campaigns/${campaignId}/prizes/`);
+}
+
+export function createCampaignPrize(campaignId, payload) {
+  assertCampaignId(campaignId);
+
+  return requestGiveaway(`campaigns/${campaignId}/prizes/`, {
+    method: "POST",
+    body: payload,
+  });
+}
+
+export function updateCampaignPrize(prizeId, payload) {
+  assertResourceId(prizeId, "Hediye");
+
+  return requestGiveaway(`prizes/${prizeId}/`, {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function deleteCampaignPrize(prizeId) {
+  assertResourceId(prizeId, "Hediye");
+
+  return requestGiveaway(`prizes/${prizeId}/`, {
+    method: "DELETE",
+  });
+}
+
+export function listCampaignSegments(campaignId) {
+  assertCampaignId(campaignId);
+
+  return requestGiveaway(`campaigns/${campaignId}/segments/`);
+}
+
+export function createCampaignSegment(campaignId, payload) {
+  assertCampaignId(campaignId);
+
+  return requestGiveaway(`campaigns/${campaignId}/segments/`, {
+    method: "POST",
+    body: payload,
+  });
+}
+
+export function updateCampaignSegment(segmentId, payload) {
+  assertResourceId(segmentId, "Çark dilimi");
+
+  return requestGiveaway(`segments/${segmentId}/`, {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function deleteCampaignSegment(segmentId) {
+  assertResourceId(segmentId, "Çark dilimi");
+
+  return requestGiveaway(`segments/${segmentId}/`, {
+    method: "DELETE",
+  });
+}
+
+export function getWheelGiveawaySettings() {
+  return requestGiveaway("settings/");
+}
+
+export function updateWheelGiveawaySettings(payload) {
+  return requestGiveaway("settings/", {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function listDefaultPrizes() {
+  return requestGiveaway("default-prizes/");
+}
+
+export function createDefaultPrize(payload) {
+  return requestGiveaway("default-prizes/", {
+    method: "POST",
+    body: payload,
+  });
+}
+
+export function updateDefaultPrize(id, payload) {
+  assertResourceId(id, "Varsayılan hediye");
+
+  return requestGiveaway(`default-prizes/${id}/`, {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function deleteDefaultPrize(id) {
+  assertResourceId(id, "Varsayılan hediye");
+
+  return requestGiveaway(`default-prizes/${id}/`, {
+    method: "DELETE",
+  });
+}
+
+export function listDefaultSegments() {
+  return requestGiveaway("default-segments/");
+}
+
+export function createDefaultSegment(payload) {
+  return requestGiveaway("default-segments/", {
+    method: "POST",
+    body: payload,
+  });
+}
+
+export function updateDefaultSegment(id, payload) {
+  assertResourceId(id, "Varsayılan çark dilimi");
+
+  return requestGiveaway(`default-segments/${id}/`, {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function deleteDefaultSegment(id) {
+  assertResourceId(id, "Varsayılan çark dilimi");
+
+  return requestGiveaway(`default-segments/${id}/`, {
+    method: "DELETE",
+  });
 }

@@ -311,7 +311,12 @@
 
 @media (max-width: 640px) {
   .pageHeader {
+    flex-direction: column;
     align-items: flex-start;
+  }
+
+  .pageHeader :global(.btn) {
+    width: 100%;
   }
 
   .panelHeader {

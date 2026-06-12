@@ -5,6 +5,7 @@ import ParticipantsTable from "./components/ParticipantsTable";
 import DrawPreviewTable from "./components/DrawPreviewTable";
 import WinnersTable from "./components/WinnersTable";
 import ConfirmActionModal from "./components/ConfirmActionModal";
+import WeeklyGiveawaySubNav from "./components/WeeklyGiveawaySubNav";
 import styles from "./HaftalikUygulamaPage.module.css";
 import {
   cancelGiveawayDrawPreview,
@@ -17,6 +18,8 @@ import {
   refreshGiveawayDrawPreview,
   startGiveawayCampaignFromDefaults,
 } from "../../../services/wheelGiveawayWebService";
+
+const DASHBOARD_ROUTE = "/panel/cekilis/haftalik-uygulama";
 
 function formatDate(value) {
   if (!value) return "-";
@@ -84,7 +87,7 @@ function getFriendlyErrorMessage(error) {
   return message;
 }
 
-function HaftalikUygulamaPage() {
+function HaftalikUygulamaPage({ onNavigate }) {
   const [campaigns, setCampaigns] = useState([]);
   const [participants, setParticipants] = useState([]);
   const [previewWinners, setPreviewWinners] = useState([]);
@@ -143,6 +146,15 @@ function HaftalikUygulamaPage() {
   useEffect(() => {
     loadDashboard();
   }, [loadDashboard]);
+
+  const navigateTo = (path) => {
+    if (typeof onNavigate === "function") {
+      onNavigate(path);
+      return;
+    }
+
+    window.location.assign(path);
+  };
 
   const handleConfirm = async () => {
     if (!activeAction) return;
@@ -206,13 +218,18 @@ function HaftalikUygulamaPage() {
         <div className={styles.pageHeader}>
           <div>
             <p className="eyebrow">QRakter Çekiliş</p>
-            <h1>Çark Operasyon Paneli</h1>
+            <h1>Çekiliş Sonuçlandırma</h1>
             <p>
-              Haftalık çark çekilişini başlatın, kapatın, ön sonucu oluşturun ve kazananları
-              onaylayın.
+              Aktif çekilişi kapatın, ön çekiliş sonucunu oluşturun ve sonucu onaylayarak
+              kazananlara e-posta gönderimini başlatın.
             </p>
           </div>
+          <button className="btn btn-secondary" type="button" onClick={() => navigateTo(DASHBOARD_ROUTE)}>
+            ← Haftalık Çekiliş Paneline Dön
+          </button>
         </div>
+
+        <WeeklyGiveawaySubNav onNavigate={onNavigate} />
 
         {toastMessage && (
           <div className={styles.toast} role="status">
