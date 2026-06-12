@@ -4,46 +4,6 @@
   gap: 1.4rem;
 }
 
-.passwordShell {
-  min-height: 48vh;
-  display: grid;
-  place-items: center;
-}
-
-.passwordGate {
-  width: min(420px, 100%);
-  display: grid;
-  gap: 0.75rem;
-  padding: clamp(1rem, 3vw, 1.4rem);
-  border: 1px solid rgba(204, 229, 188, 0.95);
-  border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: var(--box-shadow-regular);
-}
-
-.passwordGate input {
-  width: 100%;
-  min-height: 48px;
-  border: 1px solid var(--border);
-  border-radius: 0.45rem;
-  background: var(--white);
-  color: var(--color-heading);
-  padding: 0 0.9rem;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.passwordGate input::placeholder {
-  color: rgba(46, 125, 91, 0.56);
-}
-
-.passwordError {
-  margin: 0;
-  color: var(--danger);
-  font-size: 0.9rem;
-  font-weight: 800;
-}
-
 .pageHeader {
   display: flex;
   justify-content: space-between;

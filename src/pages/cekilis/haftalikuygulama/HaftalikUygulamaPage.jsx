@@ -18,8 +18,6 @@ import {
   startGiveawayCampaignFromDefaults,
 } from "../../../services/wheelGiveawayWebService";
 
-const GIVEAWAY_PANEL_PASSWORD = "qrakter2026";
-
 function formatDate(value) {
   if (!value) return "-";
 
@@ -87,11 +85,6 @@ function getFriendlyErrorMessage(error) {
 }
 
 function HaftalikUygulamaPage() {
-  const [isUnlocked, setIsUnlocked] = useState(
-    () => sessionStorage.getItem("giveaway_panel_unlocked") === "true"
-  );
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [campaigns, setCampaigns] = useState([]);
   const [participants, setParticipants] = useState([]);
   const [previewWinners, setPreviewWinners] = useState([]);
@@ -109,8 +102,6 @@ function HaftalikUygulamaPage() {
 
   const loadDashboard = useCallback(
     async ({ silent = false } = {}) => {
-      if (!isUnlocked) return;
-
       if (!silent) {
         setIsInitialLoading(true);
       }
@@ -146,25 +137,12 @@ function HaftalikUygulamaPage() {
         setIsInitialLoading(false);
       }
     },
-    [isUnlocked]
+    []
   );
 
   useEffect(() => {
     loadDashboard();
   }, [loadDashboard]);
-
-  const handlePasswordSubmit = (event) => {
-    event.preventDefault();
-
-    if (password === GIVEAWAY_PANEL_PASSWORD) {
-      sessionStorage.setItem("giveaway_panel_unlocked", "true");
-      setIsUnlocked(true);
-      setPasswordError("");
-      return;
-    }
-
-    setPasswordError("Şifre hatalı.");
-  };
 
   const handleConfirm = async () => {
     if (!activeAction) return;
@@ -221,35 +199,6 @@ function HaftalikUygulamaPage() {
       setActionLoading("");
     }
   };
-
-  if (!isUnlocked) {
-    return (
-      <section className="section">
-        <div className={`container ${styles.passwordShell}`}>
-          <form className={styles.passwordGate} onSubmit={handlePasswordSubmit}>
-            <input
-              aria-label="Şifre"
-              type="password"
-              value={password}
-              placeholder="Şifre"
-              onChange={(event) => {
-                setPassword(event.target.value);
-                setPasswordError("");
-              }}
-            />
-            <button className="btn btn-primary" type="submit">
-              Giriş Yap
-            </button>
-            {passwordError && (
-              <p className={styles.passwordError} role="alert">
-                {passwordError}
-              </p>
-            )}
-          </form>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="section">

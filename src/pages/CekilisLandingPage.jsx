@@ -33,7 +33,7 @@ function CekilisLandingPage({ onNavigate }) {
                     <button
                         type="button"
                         className="cekilis-option-card"
-                        onClick={() => navigateTo('/cekilis/fuar-festival')}
+                        onClick={() => navigateTo('/panel/cekilis/fuar')}
                     >
                         <span className="cekilis-option-icon cekilis-option-icon-event" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none">
@@ -59,7 +59,7 @@ function CekilisLandingPage({ onNavigate }) {
                     <button
                         type="button"
                         className="cekilis-option-card"
-                        onClick={() => navigateTo('/cekilis/haftalikuygulama')}
+                        onClick={() => navigateTo('/panel/cekilis/haftalik-uygulama')}
                     >
                         <span className="cekilis-option-icon cekilis-option-icon-gift" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none">

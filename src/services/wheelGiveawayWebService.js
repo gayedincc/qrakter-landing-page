@@ -1,5 +1,8 @@
+import { clearAdminSession, getAdminAccessToken } from "../utils/adminAuth";
+
 const API_BASE_URL = "https://ktt.everionai.com/api/v1/wheel-giveaways/web/";
-const API_TOKEN = "mUfVhyyM3JiSZXqTzfLweWqeHMNwLGiJ";
+const MISSING_ADMIN_SESSION_MESSAGE =
+  "Yönetim paneli oturumu bulunamadı. Lütfen tekrar giriş yapın.";
 
 export const GIVEAWAY_CAMPAIGN_STATUS_LABELS = {
   draft: "Hazırlık",
@@ -37,10 +40,26 @@ function getErrorMessage(data) {
   );
 }
 
+function redirectToPanelLogin() {
+  if (typeof window === "undefined" || window.location.pathname === "/panel/giris") {
+    return;
+  }
+
+  window.location.replace("/panel/giris");
+}
+
 async function requestGiveaway(path, options = {}) {
+  const accessToken = getAdminAccessToken();
+
+  if (!accessToken) {
+    clearAdminSession();
+    redirectToPanelLogin();
+    throw new Error(MISSING_ADMIN_SESSION_MESSAGE);
+  }
+
   const headers = {
     "Content-Type": "application/json",
-    "X-Giveaway-Api-Key": API_TOKEN,
+    Authorization: `Bearer ${accessToken}`,
     ...options.headers,
   };
 
@@ -56,6 +75,11 @@ async function requestGiveaway(path, options = {}) {
   const data = isJsonResponse ? await response.json() : null;
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      clearAdminSession();
+      redirectToPanelLogin();
+    }
+
     throw new Error(getErrorMessage(data));
   }
 

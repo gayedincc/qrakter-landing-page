@@ -9,6 +9,8 @@ import ScrollToTopButton from './components/ScrollToTopButton'
 import GiveawayPage from './pages/GiveawayPage'
 import CekilisLandingPage from './pages/CekilisLandingPage'
 import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
+import AdminLoginPage from './pages/admin/AdminLoginPage'
+import { getAdminAccessToken, getStoredAdminUser, isAdminUser } from './utils/adminAuth'
 import './styles/landing.css'
 
 function normalizePath(pathname) {
@@ -37,6 +39,26 @@ function navigateToPath(path, setPathname) {
   window.history.pushState({}, '', nextPath)
   setPathname(nextPath)
   window.scrollTo({ top: 0, behavior: 'auto' })
+}
+
+function replaceWithPath(path, setPathname) {
+  const nextPath = normalizePath(path)
+
+  if (nextPath === normalizePath(window.location.pathname)) {
+    return
+  }
+
+  window.history.replaceState({}, '', nextPath)
+  setPathname(nextPath)
+  window.scrollTo({ top: 0, behavior: 'auto' })
+}
+
+function hasAdminPanelAccess() {
+  return Boolean(getAdminAccessToken()) && isAdminUser(getStoredAdminUser())
+}
+
+function isPublicCekilisRoute(pathname) {
+  return pathname === '/cekilis' || pathname.startsWith('/cekilis/')
 }
 
 function CekilisBackButton({ onClick }) {
@@ -94,33 +116,52 @@ function App() {
     }
   }, [pathname])
 
-  const isCekilisRoute = pathname === '/cekilis' || pathname.startsWith('/cekilis/')
+  useEffect(() => {
+    if (isPublicCekilisRoute(pathname)) {
+      replaceWithPath('/panel/giris', setPathname)
+      return
+    }
 
-  const goToCekilisLanding = () => {
-    navigateToPath('/cekilis', setPathname)
-  }
+    if (pathname.startsWith('/panel/cekilis') && !hasAdminPanelAccess()) {
+      replaceWithPath('/panel/giris', setPathname)
+    }
+  }, [pathname])
+
+  const isCekilisRoute = pathname === '/cekilis' || pathname.startsWith('/cekilis/')
+  const isPanelRoute = pathname === '/panel/giris' || pathname.startsWith('/panel/')
+  const showPublicChrome = !isPanelRoute && !isPublicCekilisRoute(pathname)
 
   const renderCurrentPage = () => {
-    if (pathname === '/cekilis') {
+    const renderPanelLogin = () => (
+      <AdminLoginPage onLoginSuccess={() => navigateToPath('/panel/cekilis', setPathname)} />
+    )
+
+    if (pathname === '/panel/giris') {
+      return renderPanelLogin()
+    }
+
+    if (isPublicCekilisRoute(pathname)) {
+      return renderPanelLogin()
+    }
+
+    if (pathname.startsWith('/panel/cekilis') && !hasAdminPanelAccess()) {
+      return renderPanelLogin()
+    }
+
+    if (pathname === '/panel/cekilis') {
       return <CekilisLandingPage onNavigate={(path) => navigateToPath(path, setPathname)} />
     }
 
-    if (pathname === '/cekilis/fuar-festival') {
-      return (
-        <>
-          <CekilisBackButton onClick={goToCekilisLanding} />
-          <GiveawayPage />
-        </>
-      )
+    if (pathname === '/panel/cekilis/haftalik-uygulama') {
+      return <HaftalikUygulamaPage />
     }
 
-    if (pathname === '/cekilis/haftalikuygulama') {
-      return (
-        <>
-          <CekilisBackButton onClick={goToCekilisLanding} />
-          <HaftalikUygulamaPage />
-        </>
-      )
+    if (pathname === '/panel/cekilis/fuar') {
+      return <GiveawayPage />
+    }
+
+    if (pathname.startsWith('/panel/')) {
+      return renderPanelLogin()
     }
 
     return <LandingPage />
@@ -128,15 +169,17 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Navbar
-        brandHref={isCekilisRoute ? '/' : '#ana-sayfa'}
-        headerId={isCekilisRoute ? undefined : 'ana-sayfa'}
-      />
+      {showPublicChrome ? (
+        <Navbar
+          brandHref={isCekilisRoute ? '/' : '#ana-sayfa'}
+          headerId={isCekilisRoute ? undefined : 'ana-sayfa'}
+        />
+      ) : null}
 
       <main>{renderCurrentPage()}</main>
 
-      <Footer />
-      {!isCekilisRoute ? <ScrollToTopButton /> : null}
+      {showPublicChrome ? <Footer /> : null}
+      {showPublicChrome && !isCekilisRoute ? <ScrollToTopButton /> : null}
     </div>
   )
 }

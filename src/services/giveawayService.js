@@ -1,5 +1,4 @@
 const API_BASE_URL = "https://ktt.everionai.com/api/v1/profiles/";
-const API_TOKEN = "mUfVhyyM3JiSZXqTzfLweWqeHMNwLGiJ";
 
 function buildGiveawayUrl(path) {
   const normalizedPath = path.replace(/^\/+/, "");
@@ -10,7 +9,6 @@ function buildGiveawayUrl(path) {
 async function requestGiveaway(path, options = {}) {
   const headers = {
     "Content-Type": "application/json",
-    "X-Giveaway-Api-Key": API_TOKEN,
     ...options.headers,
   };
 
