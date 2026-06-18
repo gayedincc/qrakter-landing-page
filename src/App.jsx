@@ -16,7 +16,11 @@ import HaftalikUygulamaSettingsPage from './pages/cekilis/haftalikuygulama/Hafta
 import HaftalikUygulamaWinnersPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaWinnersPage'
 import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
+import ClubReviewApplicationDetailPage from './pages/clubs/review/ClubReviewApplicationDetailPage'
+import ClubReviewApplicationsPage from './pages/clubs/review/ClubReviewApplicationsPage'
+import ClubReviewLoginPage from './pages/clubs/review/ClubReviewLoginPage'
 import { getAdminAccessToken, getStoredAdminUser, isAdminUser } from './utils/adminAuth'
+import { hasClubReviewAccess } from './services/clubReviewService'
 import './styles/landing.css'
 
 function normalizePath(pathname) {
@@ -65,6 +69,10 @@ function hasAdminPanelAccess() {
 
 function isPublicCekilisRoute(pathname) {
   return pathname === '/cekilis' || pathname.startsWith('/cekilis/')
+}
+
+function isClubReviewRoute(pathname) {
+  return pathname === '/kulup-onay/giris' || pathname.startsWith('/kulup-onay/')
 }
 
 function CekilisBackButton({ onClick }) {
@@ -130,23 +138,36 @@ function App() {
 
     if (pathname.startsWith('/panel/cekilis') && !hasAdminPanelAccess()) {
       replaceWithPath('/panel/giris', setPathname)
+      return
+    }
+
+    if (pathname.startsWith('/kulup-onay/basvurular') && !hasClubReviewAccess()) {
+      replaceWithPath('/kulup-onay/giris', setPathname)
     }
   }, [pathname])
 
   const isCekilisRoute = pathname === '/cekilis' || pathname.startsWith('/cekilis/')
   const isPanelRoute = pathname === '/panel/giris' || pathname.startsWith('/panel/')
-  const showPublicChrome = !isPanelRoute && !isPublicCekilisRoute(pathname)
+  const showPublicChrome = !isPanelRoute && !isPublicCekilisRoute(pathname) && !isClubReviewRoute(pathname)
 
   const renderCurrentPage = () => {
     const campaignEditMatch = pathname.match(/^\/panel\/cekilis\/haftalik-uygulama\/cekilisler\/([^/]+)\/duzenle$/)
     const campaignDetailMatch = pathname.match(/^\/panel\/cekilis\/haftalik-uygulama\/cekilisler\/([^/]+)$/)
+    const clubReviewDetailMatch = pathname.match(/^\/kulup-onay\/basvurular\/([^/]+)$/)
 
     const renderPanelLogin = () => (
       <AdminLoginPage onLoginSuccess={() => navigateToPath('/panel/cekilis', setPathname)} />
     )
+    const renderClubReviewLogin = () => (
+      <ClubReviewLoginPage onLoginSuccess={() => navigateToPath('/kulup-onay/basvurular', setPathname)} />
+    )
 
     if (pathname === '/panel/giris') {
       return renderPanelLogin()
+    }
+
+    if (pathname === '/kulup-onay/giris') {
+      return renderClubReviewLogin()
     }
 
     if (isPublicCekilisRoute(pathname)) {
@@ -155,6 +176,23 @@ function App() {
 
     if (pathname.startsWith('/panel/cekilis') && !hasAdminPanelAccess()) {
       return renderPanelLogin()
+    }
+
+    if (pathname.startsWith('/kulup-onay/basvurular') && !hasClubReviewAccess()) {
+      return renderClubReviewLogin()
+    }
+
+    if (pathname === '/kulup-onay/basvurular') {
+      return <ClubReviewApplicationsPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (clubReviewDetailMatch) {
+      return (
+        <ClubReviewApplicationDetailPage
+          applicationId={decodeURIComponent(clubReviewDetailMatch[1])}
+          onNavigate={(path) => navigateToPath(path, setPathname)}
+        />
+      )
     }
 
     if (pathname === '/panel/cekilis') {
@@ -208,6 +246,10 @@ function App() {
 
     if (pathname.startsWith('/panel/')) {
       return renderPanelLogin()
+    }
+
+    if (pathname.startsWith('/kulup-onay/')) {
+      return renderClubReviewLogin()
     }
 
     return <LandingPage />

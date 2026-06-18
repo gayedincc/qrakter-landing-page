@@ -1,0 +1,403 @@
+.reviewSection {
+  min-height: 100vh;
+  padding: 32px 24px;
+  background: #f6faf2;
+}
+
+.pageShell {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 0 4px;
+}
+
+.pageHeader h1 {
+  color: var(--color-heading);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.15;
+}
+
+.pageHeader :global(.eyebrow) {
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.pageHeader p:not(:global(.eyebrow)) {
+  max-width: 720px;
+  margin-top: 0.45rem;
+  color: var(--color-paragraph);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.pageHeader :global(.btn) {
+  min-height: 34px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.4rem;
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.panel {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(204, 229, 188, 0.95);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(31, 107, 75, 0.08);
+  padding: 14px;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filterButton {
+  min-height: 34px;
+  border: 1px solid rgba(204, 229, 188, 0.95);
+  border-radius: 0.4rem;
+  background: var(--white);
+  color: var(--color-paragraph);
+  padding: 0.46rem 0.7rem;
+  font-size: 0.88rem;
+  font-weight: 750;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filterButtonActive {
+  background: var(--dark);
+  color: #ffffff;
+  border-color: var(--dark);
+}
+
+.searchForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.searchLabel {
+  grid-column: 1 / -1;
+  color: var(--color-heading);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.searchForm input {
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--white);
+  color: var(--color-heading);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.searchForm :global(.btn) {
+  min-height: 38px;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.4rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.tableScroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(204, 229, 188, 0.76);
+  border-radius: 0.45rem;
+}
+
+.mobileApplicationList {
+  display: none;
+}
+
+.dataTable {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.dataTable th,
+.dataTable td {
+  border-bottom: 1px solid rgba(204, 229, 188, 0.72);
+  padding: 0.62rem 0.65rem;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.dataTable th {
+  color: var(--color-heading);
+  background: #f7fdf1;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  font-weight: 850;
+}
+
+.dataTable td {
+  color: var(--color-paragraph);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.dataTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.clubName {
+  color: var(--color-heading);
+  font-weight: 850;
+}
+
+.detailButton {
+  min-width: 72px;
+  min-height: 32px;
+  padding: 0.42rem 0.65rem;
+  border-radius: 0.38rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 0.3rem 0.56rem;
+  border: 1px solid rgba(204, 229, 188, 0.86);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.statusPending {
+  background: rgba(245, 157, 22, 0.13);
+  border-color: rgba(245, 157, 22, 0.32);
+  color: #93600d;
+}
+
+.statusApproved {
+  background: rgba(15, 138, 74, 0.12);
+  border-color: rgba(15, 138, 74, 0.28);
+  color: #0c7040;
+}
+
+.statusRejected {
+  background: rgba(190, 41, 73, 0.1);
+  border-color: rgba(190, 41, 73, 0.24);
+  color: var(--danger);
+}
+
+.statusCancelled {
+  background: rgba(236, 246, 226, 0.9);
+  border-color: rgba(204, 229, 188, 0.86);
+  color: var(--color-paragraph);
+}
+
+.paginationBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(204, 229, 188, 0.72);
+}
+
+.paginationBar span {
+  color: var(--color-paragraph);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.paginationActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paginationActions :global(.btn) {
+  min-height: 34px;
+  padding: 0.48rem 0.72rem;
+  border-radius: 0.4rem;
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.emptyState {
+  display: grid;
+  gap: 0.35rem;
+  padding: 14px;
+  border: 1px dashed rgba(46, 158, 104, 0.28);
+  border-radius: 0.45rem;
+  background: rgba(240, 250, 229, 0.58);
+}
+
+.emptyState strong {
+  color: var(--color-heading);
+  font-size: 0.95rem;
+}
+
+.emptyState p,
+.loadingText {
+  color: var(--color-paragraph);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.errorBanner {
+  border: 1px solid rgba(190, 41, 73, 0.25);
+  border-radius: 0.45rem;
+  background: rgba(190, 41, 73, 0.09);
+  color: var(--danger);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .reviewSection {
+    padding: 20px 14px;
+  }
+
+  .pageShell {
+    gap: 12px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pageHeader h1 {
+    font-size: 1.55rem;
+  }
+
+  .pageHeader :global(.btn) {
+    width: 100%;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .filterBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .filterButton {
+    width: 100%;
+  }
+
+  .searchForm {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .searchForm :global(.btn) {
+    width: 100%;
+  }
+
+  .tableScroll {
+    display: none;
+  }
+
+  .mobileApplicationList {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobileApplicationCard {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(204, 229, 188, 0.78);
+    border-radius: 0.45rem;
+    background: #ffffff;
+  }
+
+  .mobileCardHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .mobileCardHeader h2 {
+    color: var(--color-heading);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .mobileCardMeta {
+    display: grid;
+    gap: 5px;
+    color: var(--color-paragraph);
+    font-size: 0.88rem;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+
+  .mobileApplicationCard .detailButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .reviewSection {
+    padding: 24px 14px;
+  }
+
+  .toolbar,
+  .searchForm {
+    grid-template-columns: 1fr;
+  }
+
+  .filterButton,
+  .searchForm :global(.btn),
+  .paginationActions,
+  .paginationActions :global(.btn) {
+    width: 100%;
+  }
+
+  .paginationBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
