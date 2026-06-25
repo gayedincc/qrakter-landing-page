@@ -2142,9 +2142,9 @@ input:focus-visible {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 16% 14%, rgba(226, 35, 26, 0.14), transparent 34%),
-    radial-gradient(circle at 85% 12%, rgba(20, 20, 20, 0.08), transparent 30%),
-    linear-gradient(180deg, #f8f8f9 0%, #f3f3f4 52%, #ececef 100%);
+    radial-gradient(circle at 16% 14%, rgba(79, 96, 60, 0.18), transparent 34%),
+    radial-gradient(circle at 85% 12%, rgba(47, 59, 39, 0.12), transparent 30%),
+    linear-gradient(180deg, #f8f3e9 0%, #f1e7d5 52%, #e6d2a9 100%);
 }
 
 .motofest-grid {
@@ -2191,7 +2191,7 @@ input:focus-visible {
 
 .motofest-eyebrow {
   margin-bottom: 0;
-  color: #b6251c;
+  color: #4f603c;
 }
 
 .motofest-live-pill {
@@ -2200,9 +2200,9 @@ input:focus-visible {
   min-height: 30px;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: rgba(226, 35, 26, 0.08);
-  border: 1px solid rgba(226, 35, 26, 0.26);
-  color: #aa2a20;
+  background: rgba(79, 96, 60, 0.1);
+  border: 1px solid rgba(79, 96, 60, 0.3);
+  color: #3d4b30;
   font-size: 0.76rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2296,7 +2296,7 @@ input:focus-visible {
   width: 0.46rem;
   height: 0.46rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #e2231a, #851914);
+  background: linear-gradient(135deg, #6d7c52, #2f3b27);
 }
 
 .motofest-actions {
@@ -2321,7 +2321,7 @@ input:focus-visible {
 }
 
 .motofest-reel-label {
-  color: #a0261d;
+  color: #4f603c;
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2341,7 +2341,7 @@ input:focus-visible {
   position: relative;
   overflow: hidden;
   border-radius: 1.1rem;
-  border: 1px solid rgba(187, 215, 199, 0.95);
+  border: 1px solid rgba(79, 96, 60, 0.45);
   background: #ffffff;
 }
 
@@ -2373,8 +2373,8 @@ input:focus-visible {
   max-height: min(91vh, 820px);
   margin: auto;
   background:
-    radial-gradient(circle at top right, rgba(226, 35, 26, 0.12), transparent 34%),
-    linear-gradient(162deg, #fcfcfd 0%, #f7f7f9 54%, #f1f1f4 100%);
+    radial-gradient(circle at top right, rgba(79, 96, 60, 0.16), transparent 34%),
+    linear-gradient(162deg, #fffdf8 0%, #f8f3e9 54%, #eee2ce 100%);
   color: #202028;
   overflow: auto;
   animation: modal-rise 0.38s ease;
@@ -2414,7 +2414,7 @@ input:focus-visible {
 
 .motofest-modal-close:hover {
   transform: translateY(-1px);
-  background: rgba(226, 35, 26, 0.18);
+  background: rgba(79, 96, 60, 0.18);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
 }
 
@@ -2570,7 +2570,7 @@ input:focus-visible {
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #e2231a, #851914);
+  background: linear-gradient(135deg, #6d7c52, #2f3b27);
 }
 
 .motofest-modal-actions {
@@ -2589,13 +2589,13 @@ input:focus-visible {
 
 .motofest-actions .btn-primary,
 .motofest-modal-actions .btn-primary {
-  background: linear-gradient(135deg, #e2231a 0%, #b41814 100%);
-  box-shadow: 0 8px 20px rgba(178, 24, 20, 0.28);
+  background: linear-gradient(135deg, #596b43 0%, #2f3b27 100%);
+  box-shadow: 0 8px 20px rgba(47, 59, 39, 0.28);
 }
 
 .motofest-actions .btn-primary:hover,
 .motofest-modal-actions .btn-primary:hover {
-  background: linear-gradient(135deg, #f0332a 0%, #c31f1a 100%);
+  background: linear-gradient(135deg, #697d50 0%, #3c4b30 100%);
 }
 
 .motofest-actions .btn-secondary,
@@ -2900,6 +2900,7 @@ p.eyebrow {
 }
 
 @keyframes qrSoftPulse {
+
   0%,
   100% {
     box-shadow: 0 4px 14px rgba(46, 158, 104, 0.28);
@@ -2976,12 +2977,10 @@ p.eyebrow {
   z-index: -1;
   width: 38%;
   height: 220%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.48),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.48),
+      transparent);
   transform: translateX(-160%) rotate(18deg);
   pointer-events: none;
 }
@@ -3518,6 +3517,7 @@ button.cekilis-option-card {
 
 /* Responsive */
 @media (max-width: 1100px) {
+
   .cekilis-landing-shell,
   .haftalik-cekilis-shell {
     grid-template-columns: 1fr;
@@ -3587,6 +3587,7 @@ button.cekilis-option-card {
 }
 
 @media (max-width: 480px) {
+
   .cekilis-landing-hero h1,
   .haftalik-cekilis-content h1,
   .giveaway-page .lock-copy h1 {

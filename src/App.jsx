@@ -7,6 +7,7 @@ import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import GiveawayPage from './pages/GiveawayPage'
+import MotoFestSection from './components/MotoFestSection'
 import CekilisLandingPage from './pages/CekilisLandingPage'
 import HaftalikUygulamaCampaignDetailPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaCampaignDetailPage'
 import HaftalikUygulamaCampaignEditPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaCampaignEditPage'
@@ -32,6 +33,7 @@ function LandingPage() {
   return (
     <>
       <Hero />
+      <MotoFestSection />
       <HowItWorks />
       <Features />
       <ContactForm />
