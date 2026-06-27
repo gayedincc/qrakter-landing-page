@@ -1,4 +1,8 @@
+import { clearAdminSession, getAdminAccessToken } from "../utils/adminAuth";
+
 const API_BASE_URL = "https://ktt.everionai.com/api/v1/profiles/";
+const MISSING_ADMIN_SESSION_MESSAGE =
+  "Yönetim paneli oturumu bulunamadı. Lütfen tekrar giriş yapın.";
 
 function buildGiveawayUrl(path) {
   const normalizedPath = path.replace(/^\/+/, "");
@@ -6,9 +10,38 @@ function buildGiveawayUrl(path) {
   return `${API_BASE_URL.replace(/\/+$/, "")}/${normalizedPath}`;
 }
 
+function getErrorMessage(data) {
+  return (
+    data?.detail ||
+    data?.message ||
+    data?.error ||
+    (Array.isArray(data?.non_field_errors)
+      ? data.non_field_errors.join(" ")
+      : data?.non_field_errors) ||
+    "İşlem şu anda tamamlanamadı."
+  );
+}
+
+function redirectToPanelLogin() {
+  if (typeof window === "undefined" || window.location.pathname === "/panel/giris") {
+    return;
+  }
+
+  window.location.replace("/panel/giris");
+}
+
 async function requestGiveaway(path, options = {}) {
+  const accessToken = getAdminAccessToken();
+
+  if (!accessToken) {
+    clearAdminSession();
+    redirectToPanelLogin();
+    throw new Error(MISSING_ADMIN_SESSION_MESSAGE);
+  }
+
   const headers = {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`,
     ...options.headers,
   };
 
@@ -24,7 +57,12 @@ async function requestGiveaway(path, options = {}) {
   const data = isJsonResponse ? await response.json() : null;
 
   if (!response.ok) {
-    throw new Error(data?.detail || "İşlem şu anda tamamlanamadı.");
+    if (response.status === 401 || response.status === 403) {
+      clearAdminSession();
+      redirectToPanelLogin();
+    }
+
+    throw new Error(getErrorMessage(data));
   }
 
   return data;

@@ -15,7 +15,6 @@ import {
   sendGiveawayTicket,
 } from "../services/giveawayService";
 
-const DRAW_PASSWORD = "qrakter2026";
 const DRAW_DURATION = 20000;
 const DRAW_VISIBLE_ROWS = 5;
 const DRAW_FOCUS_SLOT = 2;
@@ -740,8 +739,6 @@ const ParticipantPanel = memo(function ParticipantPanel({
 });
 
 function GiveawayPage() {
-  const [password, setPassword] = useState("");
-  const [accessError, setAccessError] = useState("");
   const [entryError, setEntryError] = useState("");
   const [locationError, setLocationError] = useState("");
   const [location, setLocation] = useState(initialLocationState);
@@ -945,12 +942,6 @@ function GiveawayPage() {
     setParticipantsError("");
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    setAccessError("");
-    setEntryError("");
-  };
-
   const handleRadiusChange = (event) => {
     setLocation((prev) => ({
       ...prev,
@@ -998,18 +989,8 @@ function GiveawayPage() {
     );
   };
 
-  const handlePasswordSubmit = (event) => {
+  const handleEntrySubmit = (event) => {
     event.preventDefault();
-
-    if (!password.trim()) {
-      setAccessError("Şifre gereklidir.");
-      return;
-    }
-
-    if (password.trim() !== DRAW_PASSWORD) {
-      setAccessError("Şifre hatalı.");
-      return;
-    }
 
     const locationValidation = getValidatedLocationPayload(location);
 
@@ -1018,13 +999,11 @@ function GiveawayPage() {
       return;
     }
 
-    setAccessError("");
     setEntryError("");
     setLocationError("");
     setParticipantsError("");
     resetWinnerPresentation();
     resetPreloadedDrawState();
-    setPassword("");
     setIsUnlocked(true);
   };
 
@@ -1304,8 +1283,8 @@ function GiveawayPage() {
             <h1>Çekiliş ekranına giriş yapın.</h1>
             <p className="section-copy">
               Mevcut konumunuzu kullanabilir veya haritadan seçim
-              yapabilirsiniz. Şifrenizi ve yarıçap bilgisini girdikten sonra
-              devam ederek çekiliş ekranına ulaşabilirsiniz.
+              yapabilirsiniz. Yarıçap bilgisini girdikten sonra devam ederek
+              çekiliş ekranına ulaşabilirsiniz.
             </p>
           </div>
 
@@ -1314,22 +1293,7 @@ function GiveawayPage() {
               <p className="lock-card-label">QRAKTER Çekiliş</p>
               <h2>Çekiliş Girişi</h2>
 
-              <form className="lock-form" onSubmit={handlePasswordSubmit}>
-                <label htmlFor="draw-password">Şifreyi girin</label>
-                <input
-                  id="draw-password"
-                  name="draw-password"
-                  type="password"
-                  placeholder="Şifreyi girin"
-                  autoComplete="off"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  aria-invalid={Boolean(accessError)}
-                  aria-describedby={
-                    accessError ? "draw-password-error" : undefined
-                  }
-                />
-
+              <form className="lock-form" onSubmit={handleEntrySubmit}>
                 <div className="form-row" style={{ marginBottom: 0 }}>
                   <label htmlFor="draw-location-map">Konum</label>
                   <div id="draw-location-map">
@@ -1375,16 +1339,6 @@ function GiveawayPage() {
                 >
                   Devam Et
                 </button>
-
-                {accessError ? (
-                  <p
-                    id="draw-password-error"
-                    className="error-message"
-                    role="alert"
-                  >
-                    {accessError}
-                  </p>
-                ) : null}
 
                 {locationError ? (
                   <p

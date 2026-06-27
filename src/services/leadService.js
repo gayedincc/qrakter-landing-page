@@ -1,12 +1,16 @@
 const API_URL = 'https://ktt.everionai.com/api/v1/external/contacts/'
-const API_TOKEN = 'hx1w8aZhvq6WOgfWmCZleF9WUULwIay5f7LQ8JVI'
+const EXTERNAL_CONTACTS_TOKEN = import.meta.env.VITE_EXTERNAL_CONTACTS_TOKEN || ''
 
 export async function submitLead(payload) {
+  if (!EXTERNAL_CONTACTS_TOKEN) {
+    throw new Error('İletişim talebi gönderilemedi.')
+  }
+
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-External-Token': API_TOKEN,
+      'X-External-Token': EXTERNAL_CONTACTS_TOKEN,
     },
     body: JSON.stringify(payload),
   })
