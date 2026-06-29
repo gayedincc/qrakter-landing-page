@@ -33,7 +33,7 @@ function LandingPage() {
   return (
     <>
       <Hero />
-      <MotoFestSection />
+      {/* <MotoFestSection /> */}
       <HowItWorks />
       <Features />
       <ContactForm />
