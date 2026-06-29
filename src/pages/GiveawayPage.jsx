@@ -53,6 +53,8 @@ const initialLocationState = {
   latitude: "",
   longitude: "",
   radius_km: "",
+  event_start_date: "",
+  event_end_date: "",
 };
 
 const confettiColors = ["#a1d95c", "#66bb6a", "#cdef8c", "#237c51", "#e8f7d1"];
@@ -325,10 +327,53 @@ function getWinnerRecordId(response, winner) {
   return response?.winner_record_id ?? winner?.winner_record_id ?? null;
 }
 
+function formatDateText(dateText) {
+  const dateMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateText);
+
+  if (!dateMatch) {
+    return dateText;
+  }
+
+  const [, year, month, day] = dateMatch;
+
+  return `${day}.${month}.${year}`;
+}
+
+function formatDateRangeText(startDate, endDate) {
+  return [startDate, endDate].filter(Boolean).map(formatDateText).join(" - ");
+}
+
+function getEventDateRangeText(eventDateRange) {
+  if (!eventDateRange) {
+    return "";
+  }
+
+  if (typeof eventDateRange === "string") {
+    return eventDateRange.split(" - ").map(formatDateText).join(" - ");
+  }
+
+  if (Array.isArray(eventDateRange)) {
+    return eventDateRange.filter(Boolean).map(formatDateText).join(" - ");
+  }
+
+  const startDate =
+    eventDateRange.start_date ??
+    eventDateRange.start ??
+    eventDateRange.event_start_date;
+  const endDate =
+    eventDateRange.end_date ??
+    eventDateRange.end ??
+    eventDateRange.event_end_date;
+
+  return formatDateRangeText(startDate, endDate);
+}
+
 function getValidatedLocationPayload(location) {
   const latitudeText = location.latitude.trim();
   const longitudeText = location.longitude.trim();
   const radiusText = location.radius_km.trim();
+  const eventStartDate = location.event_start_date.trim();
+  const eventEndDate = location.event_end_date.trim();
 
   if (!latitudeText || !longitudeText || !radiusText) {
     return {
@@ -362,12 +407,35 @@ function getValidatedLocationPayload(location) {
     };
   }
 
+  if (!eventStartDate) {
+    return {
+      error: "Etkinlik başlangıç tarihi zorunludur.",
+      payload: null,
+    };
+  }
+
+  if (!eventEndDate) {
+    return {
+      error: "Etkinlik bitiş tarihi zorunludur.",
+      payload: null,
+    };
+  }
+
+  if (eventEndDate < eventStartDate) {
+    return {
+      error: "Etkinlik bitiş tarihi başlangıç tarihinden önce olamaz.",
+      payload: null,
+    };
+  }
+
   return {
     error: "",
     payload: {
       latitude,
       longitude,
       radius_km: radiusKm,
+      event_start_date: eventStartDate,
+      event_end_date: eventEndDate,
     },
   };
 }
@@ -766,6 +834,7 @@ function GiveawayPage() {
   const [isSendingTicket, setIsSendingTicket] = useState(false);
   const [ticketError, setTicketError] = useState("");
   const [drawStatus, setDrawStatus] = useState(LOAD_PARTICIPANTS_MESSAGE);
+  const [eventDateRange, setEventDateRange] = useState("");
 
   const animationFrameRef = useRef(0);
   const modalTimeoutRef = useRef(0);
@@ -816,6 +885,7 @@ function GiveawayPage() {
     setWinnerRecordId(null);
     setIsDrawReady(false);
     setDrawStatus(LOAD_PARTICIPANTS_MESSAGE);
+    setEventDateRange("");
   };
 
   const resetWinnerPresentation = () => {
@@ -957,6 +1027,23 @@ function GiveawayPage() {
     setParticipantsError("");
   };
 
+  const handleEventDateChange = (event) => {
+    const { name, value } = event.target;
+
+    setLocation((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (hasLoadedParticipants || preloadedWinner || isDrawReady) {
+      resetPreloadedDrawState();
+    }
+
+    setLocationError("");
+    setEntryError("");
+    setParticipantsError("");
+  };
+
   const handleUseCurrentLocation = () => {
     if (!navigator.geolocation) {
       setLocationError("Konum alınamadı.");
@@ -1037,6 +1124,9 @@ function GiveawayPage() {
         winnerIndex: resolvedWinnerIndex,
       } = resolvePreloadedDrawResult(response?.candidates, winnerData);
       const nextWinnerRecordId = getWinnerRecordId(response, resolvedWinner);
+      const nextEventDateRange = getEventDateRangeText(
+        response?.event_date_range,
+      );
 
       syncParticipantsToPanels(nextParticipants);
       setHasLoadedParticipants(true);
@@ -1045,6 +1135,7 @@ function GiveawayPage() {
         resolvedWinnerIndex >= 0 ? resolvedWinnerIndex : null,
       );
       setWinnerRecordId(nextWinnerRecordId);
+      setEventDateRange(nextEventDateRange);
 
       if (!nextParticipants.length) {
         setIsDrawReady(false);
@@ -1332,6 +1423,36 @@ function GiveawayPage() {
                   }
                 />
 
+                <label htmlFor="draw-event-start-date">
+                  Etkinlik Başlangıç Tarihi
+                </label>
+                <input
+                  id="draw-event-start-date"
+                  name="event_start_date"
+                  type="date"
+                  value={location.event_start_date}
+                  onChange={handleEventDateChange}
+                  aria-invalid={Boolean(locationError)}
+                  aria-describedby={
+                    locationError ? "draw-location-error" : undefined
+                  }
+                />
+
+                <label htmlFor="draw-event-end-date">
+                  Etkinlik Bitiş Tarihi
+                </label>
+                <input
+                  id="draw-event-end-date"
+                  name="event_end_date"
+                  type="date"
+                  value={location.event_end_date}
+                  onChange={handleEventDateChange}
+                  aria-invalid={Boolean(locationError)}
+                  aria-describedby={
+                    locationError ? "draw-location-error" : undefined
+                  }
+                />
+
                 <button
                   className="btn btn-primary full-width"
                   type="submit"
@@ -1502,6 +1623,12 @@ function GiveawayPage() {
                 </button>
 
                 <p className="draw-helper">{helperText}</p>
+
+                {eventDateRange ? (
+                  <p className="draw-helper">
+                    Etkinlik aralığı: {eventDateRange}
+                  </p>
+                ) : null}
 
                 {participantsError ? (
                   <p className="error-message" role="alert">
