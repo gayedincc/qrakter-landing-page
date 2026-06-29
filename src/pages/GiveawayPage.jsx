@@ -327,20 +327,42 @@ function getWinnerRecordId(response, winner) {
   return response?.winner_record_id ?? winner?.winner_record_id ?? null;
 }
 
-function formatDateText(dateText) {
-  const dateMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateText);
-
-  if (!dateMatch) {
-    return dateText;
+function formatDisplayDate(value) {
+  if (!value) {
+    return "";
   }
 
-  const [, year, month, day] = dateMatch;
+  const valueText = String(value);
+  const dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(valueText);
 
-  return `${day}.${month}.${year}`;
+  if (dateMatch) {
+    const [, year, month, day] = dateMatch;
+
+    return `${day}.${month}.${year}`;
+  }
+
+  const date = new Date(valueText);
+
+  if (Number.isNaN(date.getTime())) {
+    return valueText;
+  }
+
+  return new Intl.DateTimeFormat("tr-TR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date);
 }
 
 function formatDateRangeText(startDate, endDate) {
-  return [startDate, endDate].filter(Boolean).map(formatDateText).join(" - ");
+  const formattedStartDate = formatDisplayDate(startDate);
+  const formattedEndDate = formatDisplayDate(endDate);
+
+  if (!formattedStartDate || !formattedEndDate) {
+    return "";
+  }
+
+  return `${formattedStartDate} - ${formattedEndDate}`;
 }
 
 function getEventDateRangeText(eventDateRange) {
@@ -349,11 +371,15 @@ function getEventDateRangeText(eventDateRange) {
   }
 
   if (typeof eventDateRange === "string") {
-    return eventDateRange.split(" - ").map(formatDateText).join(" - ");
+    const [startDate, endDate] = eventDateRange.split(" - ");
+
+    return endDate
+      ? formatDateRangeText(startDate, endDate)
+      : formatDisplayDate(eventDateRange);
   }
 
   if (Array.isArray(eventDateRange)) {
-    return eventDateRange.filter(Boolean).map(formatDateText).join(" - ");
+    return formatDateRangeText(eventDateRange[0], eventDateRange[1]);
   }
 
   const startDate =
