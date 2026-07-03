@@ -76,7 +76,7 @@
   color: var(--color-heading);
   padding: 0.35rem 0.72rem;
   font-size: 0.84rem;
-  font-weight: 900;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -120,7 +120,7 @@
   color: var(--color-heading);
   background: var(--bg-light-green);
   font-size: 0.84rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .dataTable td {

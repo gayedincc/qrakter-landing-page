@@ -7,7 +7,7 @@ const ZAYFIX_INSTAGRAM_URL = "https://www.instagram.com/zayfix.tr/";
 
 function HowItWorks() {
   return (
-    <section id="zayfix-erisim" className="section how-section access-section">
+    <section className="section how-section access-section">
       <div className="container">
         <article className="access-card reveal">
           <h3>Zayfix Qrakter’e kolayca ulaşın</h3>

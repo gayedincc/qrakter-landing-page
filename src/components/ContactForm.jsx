@@ -59,9 +59,9 @@ function ContactForm() {
   }
 
   return (
-    <section id="iletisim" className="section contact-section">
+    <section className="section contact-section">
       <div className="container contact-grid">
-        <div className="contact-content">
+        <div id="iletisim" className="contact-content">
           <p className="eyebrow">İletişim</p>
           <h2>QRAKTER’in offline akışını ve QR senaryolarını yakından inceleyin.</h2>
           <p>
@@ -93,7 +93,7 @@ function ContactForm() {
               name="firstName"
               type="text"
               autoComplete="given-name"
-              placeholder="Örnek: Ahmet"
+              placeholder="Adınızı girin"
               value={formData.firstName}
               onChange={handleChange}
               aria-invalid={Boolean(errors.firstName)}
@@ -113,7 +113,7 @@ function ContactForm() {
               name="lastName"
               type="text"
               autoComplete="family-name"
-              placeholder="Örnek: Demir"
+              placeholder="Soyadınızı girin"
               value={formData.lastName}
               onChange={handleChange}
               aria-invalid={Boolean(errors.lastName)}
@@ -133,7 +133,7 @@ function ContactForm() {
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="ornek@firma.com"
+              placeholder="E-posta adresinizi girin"
               value={formData.email}
               onChange={handleChange}
               required
@@ -154,7 +154,7 @@ function ContactForm() {
               name="phone"
               type="tel"
               autoComplete="tel"
-              placeholder="05XX XXX XX XX"
+              placeholder="Telefon numaranızı girin"
               value={formData.phone}
               onChange={handleChange}
               required
