@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import logo from '../assets/zayfix-logo-2.webp'
+import kullanimKilavuzuPdf from '../assets/docs/Zayfix Qrakter Kullanım Kılavuzu.pdf'
 
 function Navbar({ brandHref = '#ana-sayfa', headerId = 'ana-sayfa' }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -54,14 +55,14 @@ function Navbar({ brandHref = '#ana-sayfa', headerId = 'ana-sayfa' }) {
             ))}
           </div>
 
-          {/* <a
-            href="/docs/zayfix-qrakter-kullanim-kilavuzu.pdf"
+          <a
+            href={kullanimKilavuzuPdf}
             download
             className="btn btn-primary nav-cta"
             onClick={() => setIsMenuOpen(false)}
           >
             Kullanım Kılavuzunu İndir
-          </a> */}
+          </a>
         </nav>
       </div>
     </header>
