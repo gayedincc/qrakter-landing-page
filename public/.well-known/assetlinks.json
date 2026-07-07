@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.everion.qrakter.app",
+      "sha256_cert_fingerprints": [
+        "EA:78:27:7F:1D:8A:FE:B5:22:8C:A0:52:76:CA:74:BA:21:8B:18:5B:EC:47:BF:38:A8:E3:2E:CC:92:CA:A4:4B"
+      ]
+    }
+  }
+]
