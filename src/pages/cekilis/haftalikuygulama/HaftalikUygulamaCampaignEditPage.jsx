@@ -148,6 +148,7 @@ function HaftalikUygulamaCampaignEditPage({ campaignId, onNavigate }) {
     name: "",
     description: "",
     endsAt: "",
+    daily_normal_spin_limit_override: "",
   });
   const [modalState, setModalState] = useState(null);
   const [modalError, setModalError] = useState("");
@@ -211,6 +212,10 @@ function HaftalikUygulamaCampaignEditPage({ campaignId, onNavigate }) {
         name: getCampaignName(nextCampaign),
         description: nextCampaign?.description || "",
         endsAt: nextEndDateField ? toDateTimeInputValue(nextCampaign[nextEndDateField]) : "",
+        daily_normal_spin_limit_override:
+          nextCampaign?.daily_normal_spin_limit_override == null
+            ? ""
+            : String(nextCampaign.daily_normal_spin_limit_override),
       });
     } catch (error) {
       setErrorMessage(error?.message || "Çekiliş bilgileri şu anda yüklenemedi.");
@@ -254,9 +259,25 @@ function HaftalikUygulamaCampaignEditPage({ campaignId, onNavigate }) {
       return;
     }
 
+    const dailyNormalSpinLimitOverride =
+      formValues.daily_normal_spin_limit_override === ""
+        ? null
+        : Number(formValues.daily_normal_spin_limit_override);
+
+    if (
+      dailyNormalSpinLimitOverride !== null &&
+      (!Number.isInteger(dailyNormalSpinLimitOverride) ||
+        dailyNormalSpinLimitOverride < 1 ||
+        dailyNormalSpinLimitOverride > 10)
+    ) {
+      setErrorMessage("Kampanyaya özel günlük spin limiti 1 ile 10 arasında bir tam sayı olmalıdır.");
+      return;
+    }
+
     const payload = {
       name,
       description: formValues.description.trim(),
+      daily_normal_spin_limit_override: dailyNormalSpinLimitOverride,
     };
 
     if (endDateField) {
@@ -560,6 +581,24 @@ function HaftalikUygulamaCampaignEditPage({ campaignId, onNavigate }) {
                       onChange={handleInputChange}
                       disabled={isSavingCampaign || !endDateField}
                     />
+                  </div>
+
+                  <div className={styles.field}>
+                    <label htmlFor="campaign-daily-normal-spin-limit-override">
+                      Kampanyaya Özel Günlük Spin Limiti
+                    </label>
+                    <input
+                      id="campaign-daily-normal-spin-limit-override"
+                      name="daily_normal_spin_limit_override"
+                      type="number"
+                      min="1"
+                      max="10"
+                      step="1"
+                      value={formValues.daily_normal_spin_limit_override}
+                      onChange={handleInputChange}
+                      disabled={isSavingCampaign}
+                    />
+                    <small>Boş bırakırsanız genel günlük spin limiti kullanılır.</small>
                   </div>
 
                   <div className={`${styles.field} ${styles.fieldWide}`}>

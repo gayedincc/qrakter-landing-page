@@ -31,6 +31,7 @@ const DEFAULT_SETTINGS_FORM = {
   last_winners_popup_title: "",
   last_winners_popup_message: "",
   default_campaign_name_prefix: "",
+  daily_normal_spin_limit: "1",
 };
 
 const DEFAULT_PRIZE_FORM = {
@@ -76,6 +77,7 @@ function normalizeSettingsForm(data) {
     last_winners_popup_title: data?.last_winners_popup_title || "",
     last_winners_popup_message: data?.last_winners_popup_message || "",
     default_campaign_name_prefix: data?.default_campaign_name_prefix || "",
+    daily_normal_spin_limit: String(data?.daily_normal_spin_limit ?? 1),
   };
 }
 
@@ -209,12 +211,29 @@ function HaftalikUygulamaSettingsPage({ onNavigate }) {
 
   const handleSettingsSubmit = async (event) => {
     event.preventDefault();
+
+    const dailyNormalSpinLimit = Number(settingsForm.daily_normal_spin_limit);
+
+    if (
+      settingsForm.daily_normal_spin_limit === "" ||
+      !Number.isInteger(dailyNormalSpinLimit) ||
+      dailyNormalSpinLimit < 1 ||
+      dailyNormalSpinLimit > 10
+    ) {
+      setErrorMessage("Günlük normal spin limiti 1 ile 10 arasında bir tam sayı olmalıdır.");
+      setToastMessage("");
+      return;
+    }
+
     setIsSettingsSaving(true);
     setErrorMessage("");
     setToastMessage("");
 
     try {
-      await updateWheelGiveawaySettings(settingsForm);
+      await updateWheelGiveawaySettings({
+        ...settingsForm,
+        daily_normal_spin_limit: dailyNormalSpinLimit,
+      });
       setToastMessage("Ayarlar kaydedildi.");
       await loadSettings();
     } catch (error) {
@@ -521,6 +540,21 @@ function HaftalikUygulamaSettingsPage({ onNavigate }) {
                       type="text"
                       value={settingsForm.default_campaign_name_prefix}
                       onChange={handleSettingsChange}
+                    />
+                  </div>
+
+                  <div className={styles.field}>
+                    <label htmlFor="daily-normal-spin-limit">Günlük Normal Spin Limiti</label>
+                    <input
+                      id="daily-normal-spin-limit"
+                      name="daily_normal_spin_limit"
+                      type="number"
+                      min="1"
+                      max="10"
+                      step="1"
+                      value={settingsForm.daily_normal_spin_limit}
+                      onChange={handleSettingsChange}
+                      required
                     />
                   </div>
 
