@@ -16,6 +16,7 @@ import HaftalikUygulamaDashboardPage from './pages/cekilis/haftalikuygulama/Haft
 import HaftalikUygulamaSettingsPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaSettingsPage'
 import HaftalikUygulamaWinnersPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaWinnersPage'
 import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
+import HaftalikUygulamaYayinPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaYayinPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import ClubReviewApplicationDetailPage from './pages/clubs/review/ClubReviewApplicationDetailPage'
 import ClubReviewApplicationsPage from './pages/clubs/review/ClubReviewApplicationsPage'
@@ -207,6 +208,10 @@ function App() {
 
     if (pathname === '/panel/cekilis/haftalik-uygulama/sonuclandir') {
       return <HaftalikUygulamaPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (pathname === '/panel/cekilis/haftalik-uygulama/yayin') {
+      return <HaftalikUygulamaYayinPage onNavigate={(path) => navigateToPath(path, setPathname)} />
     }
 
     if (pathname === '/panel/cekilis/haftalik-uygulama/ayarlar') {
