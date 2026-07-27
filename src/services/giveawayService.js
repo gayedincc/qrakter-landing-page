@@ -82,6 +82,10 @@ export function loadGiveawayParticipants(payload) {
   });
 }
 
+export function getGiveawaySettings() {
+  return requestGiveaway("giveaway/settings/");
+}
+
 export function sendGiveawayTicket(winnerRecordId) {
   return requestGiveaway(`giveaway/send-ticket/${winnerRecordId}/`, {
     method: "POST",

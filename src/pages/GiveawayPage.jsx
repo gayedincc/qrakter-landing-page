@@ -11,6 +11,7 @@ import {
 } from "react-leaflet";
 import cekilisZayfixImage from "../assets/cekilis-zayfix.png";
 import {
+  getGiveawaySettings,
   loadGiveawayParticipants,
   sendGiveawayTicket,
 } from "../services/giveawayService";
@@ -48,6 +49,8 @@ const MAP_DEFAULT_ZOOM = 13;
 const MAP_FOCUSED_ZOOM = 15;
 const EMPTY_PARTICIPANTS_MESSAGE = "Henüz katılımcı yok";
 const LOAD_PARTICIPANTS_MESSAGE = "Katılımcıları listelemek için butona basın";
+const DEFAULT_MIN_RADIUS_KM = 0.1;
+const DEFAULT_MAX_RADIUS_KM = 500;
 
 const initialLocationState = {
   latitude: "",
@@ -327,6 +330,30 @@ function getWinnerRecordId(response, winner) {
   return response?.winner_record_id ?? winner?.winner_record_id ?? null;
 }
 
+function formatRadiusKm(value) {
+  return String(Number(value));
+}
+
+function getRadiusBounds(settings) {
+  const minRadiusKm = Number(settings?.min_radius_km);
+  const maxRadiusKm = Number(settings?.max_radius_km);
+  const hasValidMinRadius = Number.isFinite(minRadiusKm) && minRadiusKm > 0;
+  const hasValidMaxRadius = Number.isFinite(maxRadiusKm) && maxRadiusKm > 0;
+
+  if (
+    !hasValidMinRadius ||
+    !hasValidMaxRadius ||
+    minRadiusKm > maxRadiusKm
+  ) {
+    return {
+      minRadiusKm: DEFAULT_MIN_RADIUS_KM,
+      maxRadiusKm: DEFAULT_MAX_RADIUS_KM,
+    };
+  }
+
+  return { minRadiusKm, maxRadiusKm };
+}
+
 function formatDisplayDate(value) {
   if (!value) {
     return "";
@@ -394,12 +421,13 @@ function getEventDateRangeText(eventDateRange) {
   return formatDateRangeText(startDate, endDate);
 }
 
-function getValidatedLocationPayload(location) {
-  const latitudeText = location.latitude.trim();
-  const longitudeText = location.longitude.trim();
-  const radiusText = location.radius_km.trim();
-  const eventStartDate = location.event_start_date.trim();
-  const eventEndDate = location.event_end_date.trim();
+function getValidatedLocationPayload(location, minRadiusKm, maxRadiusKm) {
+  const latitudeText = String(location.latitude ?? "").trim();
+  const longitudeText = String(location.longitude ?? "").trim();
+  const radiusText =
+    typeof location.radius_km === "string" ? location.radius_km.trim() : "";
+  const eventStartDate = String(location.event_start_date ?? "").trim();
+  const eventEndDate = String(location.event_end_date ?? "").trim();
 
   if (!latitudeText || !longitudeText || !radiusText) {
     return {
@@ -426,9 +454,16 @@ function getValidatedLocationPayload(location) {
     };
   }
 
-  if (Number.isNaN(radiusKm) || radiusKm <= 0) {
+  if (!Number.isFinite(radiusKm) || radiusKm <= 0) {
     return {
       error: "Yarıçap değeri geçerli değil.",
+      payload: null,
+    };
+  }
+
+  if (radiusKm < minRadiusKm || radiusKm > maxRadiusKm) {
+    return {
+      error: `Yarıçap ${formatRadiusKm(minRadiusKm)} ile ${formatRadiusKm(maxRadiusKm)} km arasında olmalıdır.`,
       payload: null,
     };
   }
@@ -839,6 +874,10 @@ function GiveawayPage() {
   const [mapCenter, setMapCenter] = useState(DEFAULT_MAP_CENTER);
   const [isLocating, setIsLocating] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [minRadiusKm, setMinRadiusKm] = useState(DEFAULT_MIN_RADIUS_KM);
+  const [maxRadiusKm, setMaxRadiusKm] = useState(DEFAULT_MAX_RADIUS_KM);
+  const [isSettingsLoading, setIsSettingsLoading] = useState(true);
+  const [settingsError, setSettingsError] = useState("");
 
   const [participants, setParticipants] = useState([]);
   const [hasLoadedParticipants, setHasLoadedParticipants] = useState(false);
@@ -865,6 +904,7 @@ function GiveawayPage() {
   const animationFrameRef = useRef(0);
   const modalTimeoutRef = useRef(0);
   const hasRequestedInitialLocationRef = useRef(false);
+  const hasRequestedGiveawaySettingsRef = useRef(false);
   const manualLocationSelectionRef = useRef(false);
 
   const selectedPosition = getParsedLocationPosition(location);
@@ -930,6 +970,32 @@ function GiveawayPage() {
       cancelAnimationFrame(animationFrameRef.current);
       window.clearTimeout(modalTimeoutRef.current);
     };
+  }, []);
+
+  useEffect(() => {
+    if (hasRequestedGiveawaySettingsRef.current) {
+      return;
+    }
+
+    hasRequestedGiveawaySettingsRef.current = true;
+
+    const loadGiveawaySettings = async () => {
+      try {
+        const settings = await getGiveawaySettings();
+        const bounds = getRadiusBounds(settings);
+
+        setMinRadiusKm(bounds.minRadiusKm);
+        setMaxRadiusKm(bounds.maxRadiusKm);
+      } catch {
+        setSettingsError(
+          "Yarıçap ayarları yüklenemedi. Varsayılan sınırlar kullanılıyor.",
+        );
+      } finally {
+        setIsSettingsLoading(false);
+      }
+    };
+
+    loadGiveawaySettings();
   }, []);
 
   useEffect(() => {
@@ -1105,7 +1171,15 @@ function GiveawayPage() {
   const handleEntrySubmit = (event) => {
     event.preventDefault();
 
-    const locationValidation = getValidatedLocationPayload(location);
+    if (isSettingsLoading) {
+      return;
+    }
+
+    const locationValidation = getValidatedLocationPayload(
+      location,
+      minRadiusKm,
+      maxRadiusKm,
+    );
 
     if (locationValidation.error) {
       setLocationError(locationValidation.error);
@@ -1121,11 +1195,15 @@ function GiveawayPage() {
   };
 
   const handleLoadParticipants = async () => {
-    if (isParticipantsLoading || isDrawing) {
+    if (isParticipantsLoading || isDrawing || isSettingsLoading) {
       return;
     }
 
-    const locationValidation = getValidatedLocationPayload(location);
+    const locationValidation = getValidatedLocationPayload(
+      location,
+      minRadiusKm,
+      maxRadiusKm,
+    );
 
     if (locationValidation.error) {
       setParticipantsError(locationValidation.error);
@@ -1372,7 +1450,10 @@ function GiveawayPage() {
     ? handleStartDraw
     : handleLoadParticipants;
   const primaryActionDisabled =
-    isParticipantsLoading || isDrawing || (isDrawReady && !participants.length);
+    isSettingsLoading ||
+    isParticipantsLoading ||
+    isDrawing ||
+    (isDrawReady && !participants.length);
   const helperText = participantsError
     ? hasLoadedParticipants
       ? "Çekiliş şu anda yeniden hazırlanıyor. Lütfen tekrar deneyin."
@@ -1437,7 +1518,8 @@ function GiveawayPage() {
                   id="draw-radius"
                   name="radius_km"
                   type="number"
-                  min="0"
+                  min={minRadiusKm}
+                  max={maxRadiusKm}
                   step="any"
                   placeholder="Yarıçap (km)"
                   autoComplete="off"
@@ -1448,6 +1530,22 @@ function GiveawayPage() {
                     locationError ? "draw-location-error" : undefined
                   }
                 />
+                <p className="draw-helper">
+                  İzin verilen yarıçap: {formatRadiusKm(minRadiusKm)}–
+                  {formatRadiusKm(maxRadiusKm)} km
+                </p>
+
+                {isSettingsLoading ? (
+                  <p className="draw-helper" role="status">
+                    Yarıçap ayarları yükleniyor...
+                  </p>
+                ) : null}
+
+                {settingsError ? (
+                  <p className="error-message" role="alert">
+                    {settingsError}
+                  </p>
+                ) : null}
 
                 <label htmlFor="draw-event-start-date">
                   Etkinlik Başlangıç Tarihi
@@ -1482,9 +1580,9 @@ function GiveawayPage() {
                 <button
                   className="btn btn-primary full-width"
                   type="submit"
-                  disabled={isLocating}
+                  disabled={isLocating || isSettingsLoading}
                 >
-                  Devam Et
+                  {isSettingsLoading ? "Ayarlar Yükleniyor..." : "Devam Et"}
                 </button>
 
                 {locationError ? (
