@@ -207,16 +207,6 @@ export default function HaftalikUygulamaYayinPage({ onNavigate }) {
             <span className="yayin-name rolling">{rollName || "…"}</span>
             <span className="yayin-sub">çekiliyor…</span>
           </div>
-        ) : allRevealed ? (
-          <div className="yayin-card is-done">
-            <span className="yayin-prize">Çekiliş tamamlandı</span>
-            <span className="yayin-name">🎉</span>
-            <span className="yayin-sub">
-              {confirmed
-                ? "Sonuç onaylandı, kazananlara bildirildi."
-                : "Sonucu onaylamak operatörde."}
-            </span>
-          </div>
         ) : revealedCount > 0 ? (
           <div className="yayin-card is-winner">
             <span className="yayin-prize">{winners[revealedCount - 1]?.prize_name}</span>
@@ -224,6 +214,13 @@ export default function HaftalikUygulamaYayinPage({ onNavigate }) {
             <span className="yayin-sub">
               {formatNumber(winners[revealedCount - 1]?.ticket_count_at_draw)} bilet ile kazandı
             </span>
+            {allRevealed ? (
+              <span className="yayin-done-note">
+                {confirmed
+                  ? "🎉 Çekiliş tamamlandı — sonuç onaylandı, kazananlara bildirildi."
+                  : "🎉 Çekiliş tamamlandı"}
+              </span>
+            ) : null}
             <div className="yayin-confetti" aria-hidden="true">
               {["🎉", "✨", "🎊", "⭐", "🎉", "✨"].map((e, i) => (
                 <span key={i} style={{ animationDelay: `${i * 0.12}s` }}>
