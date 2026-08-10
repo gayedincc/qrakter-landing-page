@@ -80,6 +80,31 @@ function CekilisLandingPage({ onNavigate }) {
                             <span aria-hidden="true">→</span>
                         </span>
                     </button>
+
+                    <button
+                        type="button"
+                        className="cekilis-option-card"
+                        onClick={() => navigateTo('/panel/cekilis/gelismis')}
+                    >
+                        <span className="cekilis-option-icon cekilis-option-icon-event" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 6h16M4 12h10M4 18h7M17 14l2.2 2.2L22 13" />
+                            </svg>
+                        </span>
+                        <span className="cekilis-option-badge">Kriter Bazlı</span>
+
+                        <h2>Gelişmiş Çekiliş</h2>
+
+                        <p>
+                            Şehir, kayıt tarihi, kulüp, aktiflik gibi kriterlerle katılımcı havuzu
+                            oluşturun; manuel katılımcı ekleyin, ödülleri tanımlayın ve çekilişi yapın.
+                        </p>
+
+                        <span className="cekilis-option-cta">
+                            Gelişmiş Çekilişe Git
+                            <span aria-hidden="true">→</span>
+                        </span>
+                    </button>
                 </div>
             </div>
         </section>

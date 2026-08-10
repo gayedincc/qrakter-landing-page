@@ -17,6 +17,7 @@ import HaftalikUygulamaSettingsPage from './pages/cekilis/haftalikuygulama/Hafta
 import HaftalikUygulamaWinnersPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaWinnersPage'
 import HaftalikUygulamaPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaPage'
 import HaftalikUygulamaYayinPage from './pages/cekilis/haftalikuygulama/HaftalikUygulamaYayinPage'
+import GelismisCekilisPage from './pages/cekilis/gelismis/GelismisCekilisPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import ClubReviewApplicationDetailPage from './pages/clubs/review/ClubReviewApplicationDetailPage'
 import ClubReviewApplicationsPage from './pages/clubs/review/ClubReviewApplicationsPage'
@@ -200,6 +201,10 @@ function App() {
 
     if (pathname === '/panel/cekilis') {
       return <CekilisLandingPage onNavigate={(path) => navigateToPath(path, setPathname)} />
+    }
+
+    if (pathname === '/panel/cekilis/gelismis') {
+      return <GelismisCekilisPage onNavigate={(path) => navigateToPath(path, setPathname)} />
     }
 
     if (pathname === '/panel/cekilis/haftalik-uygulama') {
